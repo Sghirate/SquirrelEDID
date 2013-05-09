@@ -4,9 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+             DataContext="{Binding Source={StaticResource ioc}, Path=Repository[WelcomeViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid Margin="20">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
@@ -14,8 +15,11 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="{utils:I18N Welcome_Part1}" FontSize="24" Margin="10" TextAlignment="Center"/>
         <TextBlock Grid.Row="1" Text="{utils:I18N Welcome_Part2}" TextWrapping="Wrap" Margin="10"/>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Click="StartButton_Click" Background="Transparent">
-            <TextBlock Text="{utils:I18N Welcome_Start}"/>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Background="Transparent" Command="{Binding StartCommand}">
+            <TextBlock Text="{utils:I18N Welcome_Continue}"/>
+        </Button>
+        <Button Grid.Row="2" HorizontalAlignment="Left" Background="Transparent" Command="{Binding AboutCommand}">
+            <TextBlock Text="{utils:I18N Welcome_About}"/>
         </Button>
     </Grid>
 </UserControl>

@@ -3,9 +3,81 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             DataContext="{Binding Source={StaticResource ioc}, Path=Repository[SettingsViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="{utils:I18N Settings_EDID}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_EDIDHelp}"/>
+        <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding TemplateEDID, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_EDIDHelp}"/>
+        <Button Grid.Row="0" Grid.Column="2" Command="{Binding EditEDIDCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_EDIDButtonHelp}">
+            <Image/>
+        </Button>
+        
+        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Command="{Binding LoadEDIDFromLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_LibraryHelp}">
+                <StackPanel Orientation="Horizontal">
+                    <Image/>
+                    <TextBlock Text="{utils:I18N Settings_Library}"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding LoadEDIDFromSystemCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SystemHelp}">
+                <StackPanel Orientation="Horizontal">
+                    <Image/>
+                    <TextBlock Text="{utils:I18N Settings_System}"/>
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding LoadEDIDFromProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_ProgrammerHelp}">
+                <StackPanel Orientation="Horizontal">
+                    <Image/>
+                    <TextBlock Text="{utils:I18N Settings_Programmer}"/>
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        
+        <TextBlock Grid.Row="2" Grid.Column="0" Text="{utils:I18N Settings_SerialPrefix}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SerialPrefixHelp}"/>
+        <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding SerialPrefix, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SerialPrefixHelp}"/>
+
+        <TextBlock Grid.Row="3" Grid.Column="0" Text="{utils:I18N Settings_SerialStart}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SerialStartHelp}"/>
+        <xctk:IntegerUpDown Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2" Minimum="0" Value="{Binding SerialStart, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SerialStartHelp}"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="0" Text="{utils:I18N Settings_SerialEnd}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SerialEndHelp}"/>
+        <xctk:IntegerUpDown Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Minimum="0" Value="{Binding SerialEnd, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_SerialEndHelp}"/>
+
+        <RadioButton Grid.Row="5" Grid.Column="0" GroupName="output" IsChecked="{Binding WriteFiles, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_OutDirectoryHelp}">
+            <TextBlock Text="{utils:I18N Settings_OutDirectory}"/>
+        </RadioButton>
+        <TextBox Grid.Row="5" Grid.Column="1" Text="{Binding OutputDirectory, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_OutDirectoryHelp}"/>
+        <Button Grid.Row="5" Grid.Column="2" Command="{Binding SelectOutputCommand}"  utils:ToolTipHelper.ToolTip="{utils:I18N Settings_OutDirectoryButtonHelp}">
+            <TextBlock Text="..."/>
+        </Button>
+
+        <RadioButton Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="3" GroupName="output" IsChecked="{Binding WriteProgrammer, Mode=TwoWay}" IsEnabled="{Binding Source={StaticResource ioc}, Path=Repository[Programmer].WarriorAvailable}" utils:ToolTipHelper.ToolTip="{utils:I18N Settings_OutProgrammerHelp}">
+            <TextBlock Text="{utils:I18N Settings_OutProgrammer}"/>
+        </RadioButton>
+        
+        <Button Grid.Row="7" Grid.ColumnSpan="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding StartCommand}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{utils:I18N Settings_Continue}"/>
+                <Image/>
+            </StackPanel>
+        </Button>
     </Grid>
 </UserControl>

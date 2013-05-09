@@ -45,5 +45,10 @@ namespace SquirrelEDID.Utilities
             _execute(parameter);
         }
         #endregion // ICommand Members
+
+        public void RaiseCanExecuteChanged()
+        {
+            CommandManager.InvalidateRequerySuggested();
+        }
     }
 }

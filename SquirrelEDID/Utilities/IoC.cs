@@ -251,11 +251,15 @@ namespace SquirrelEDID.Utilities
                 get
                 {
                     Type t = FindType(typeName);
+                    if (t == null)
+                        return null;
                     return this[t, key];
                 }
                 set
                 {
                     Type t = FindType(typeName);
+                    if (t == null)
+                        return;
                     this[t, key] = value;
                 }
             }

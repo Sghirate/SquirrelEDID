@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using SquirrelEDID.Utilities.Extensions;
 using System.Collections;
+using System.ComponentModel;
 
 namespace SquirrelEDID.Model
 {
@@ -86,16 +87,25 @@ namespace SquirrelEDID.Model
         #endregion
 
         #region Properties
-        public Dictionary<int, string> EstablishedTimings { get; set; }
-        public static Dictionary<int, string> S_EstablishedTimings { get; set; }
-        public Dictionary<int, string> DescriptorTypes { get; set; }
-        public static Dictionary<int, string> S_DescriptorTypes { get; set; }
-        public string[] WhiteAndSyncLevels { get; set; }
-        public string[] AspectRatios { get; set; }
-        public string[] DisplayTypesDigital { get; set; }
-        public string[] DisplayTypesAnalog { get; set; }
+        [Browsable(false)]
+        public string Name { get { return "EDID"; } }
+        [Browsable(false)]
+        public static Dictionary<int, string> EstablishedTimings { get { return _establishedTimings; } }
+        [Browsable(false)]
+        public static Dictionary<int, string> DescriptorTypes { get { return _descriptorTypes; } }
+        [Browsable(false)]
+        public static string[] WhiteAndSyncLevels { get { return _whiteAndSyncLevels; } }
+        [Browsable(false)]
+        public static string[] AspectRatios { get{return _aspectRatios; } }
+        [Browsable(false)]
+        public static string[] DisplayTypesDigital { get { return _displayTypesDigital; } }
+        [Browsable(false)]
+        public static string[] DisplayTypesAnalog { get { return _displayTypesAnalog; } }
+        [Browsable(false)]
         public byte this[int index] { get { return Buffer[index]; } set { Buffer[index] = value; } }
+        [Browsable(false)]
         public int Length { get { return Buffer.Length; } }
+        [Browsable(false)]
         public byte[] Buffer
         {
             get
@@ -111,7 +121,8 @@ namespace SquirrelEDID.Model
                 AllChanged();
             }
         }
-
+        [Category("General")]
+        [DisplayName("Manufacturer ID")]
         public string ManufacturerID
         {
             get
@@ -143,6 +154,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("General")]
+        [DisplayName("Product Code")]
         public int ProductCode
         {
             get
@@ -159,6 +172,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("General")]
+        [DisplayName("Serial Code")]
         public int SerialCode
         {
             get
@@ -177,6 +192,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Manufactured")]
+        [DisplayName("Week")]
         public int WeekOfManufacture
         {
             get
@@ -192,6 +209,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Manufactured")]
+        [DisplayName("Year")]
         public int YearOfManufacture
         {
             get
@@ -207,6 +226,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("EDID")]
+        [DisplayName("Version")]
         public int Version
         {
             get
@@ -222,6 +243,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("EDID")]
+        [DisplayName("Revision")]
         public int Revision
         {
             get
@@ -237,6 +260,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("General")]
+        [DisplayName("Digital?")]
         public bool IsDigital
         {
             get
@@ -252,6 +277,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public int RawVideoInputParameters
         {
             get
@@ -268,6 +294,8 @@ namespace SquirrelEDID.Model
             }
         }
         // DIGITAL
+        [Category("Digital")]
+        [DisplayName("DFP Compatible")]
         public bool IsDFPCompatible
         {
             get
@@ -284,6 +312,8 @@ namespace SquirrelEDID.Model
             }
         }
         // ANALOG
+        [Category("Analog")]
+        [DisplayName("White & Sync")]
         public int WhiteAndSync
         {
             get
@@ -301,6 +331,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Analog")]
+        [DisplayName("Blank To Black")]
         public bool BlankToBlack
         {
             get
@@ -316,6 +348,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Analog")]
+        [DisplayName("Seperate Sync")]
         public bool SeperateSync
         {
             get
@@ -331,6 +365,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Analog")]
+        [DisplayName("Composite Sync")]
         public bool CompositeSync
         {
             get
@@ -346,6 +382,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Analog")]
+        [DisplayName("Sync On Green")]
         public bool SyncOnGreen
         {
             get
@@ -361,6 +399,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("Analog")]
+        [DisplayName("VSync Pulse")]
         public bool VSyncPulse
         {
             get
@@ -377,6 +417,8 @@ namespace SquirrelEDID.Model
             }
         }
         // END
+        [Category("General")]
+        [DisplayName("Maximal Width")]
         public int MaxHorizontal
         {
             get
@@ -392,6 +434,8 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Category("General")]
+        [DisplayName("Maximal Height")]
         public int MaxVertical
         {
             get
@@ -407,21 +451,24 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
-        public int Gamma
+        [Category("General")]
+        [DisplayName("Gamma")]
+        public double Gamma
         {
             get
             {
-                return (Buffer[23] * 100) - 100;
+                return ((double)Buffer[23] + 100.0) / 100.0;
             }
             set
             {
-                Buffer[23] = (byte)(((value + 100) / 100) & 0xff);
+                Buffer[23] = (byte)(((int)((value * 100.0) - 100.0)) & 0xff);
 
                 Validify();
-                OnPropertyChanged("Gamma");
+                OnPropertyChanged("RawGamma");
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public int RawFeatures
         {
             get
@@ -437,6 +484,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public int TimingSupportedRaw
         {
             get
@@ -454,6 +502,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public int RedX
         {
             get
@@ -469,6 +518,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrRedX
         {
             get
@@ -487,6 +537,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrRedX");
             }
         }
+        [Browsable(false)]
         public int RedY
         {
             get
@@ -502,6 +553,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrRedY
         {
             get
@@ -520,6 +572,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrRedY");
             }
         }
+        [Browsable(false)]
         public int GreenX
         {
             get
@@ -535,6 +588,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrGreenX
         {
             get
@@ -553,6 +607,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrGreenX");
             }
         }
+        [Browsable(false)]
         public int GreenY
         {
             get
@@ -568,6 +623,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrGreenY
         {
             get
@@ -586,6 +642,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrGreenY");
             }
         }
+        [Browsable(false)]
         public int BlueX
         {
             get
@@ -601,6 +658,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrBlueX
         {
             get
@@ -619,6 +677,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrBlueX");
             }
         }
+        [Browsable(false)]
         public int BlueY
         {
             get
@@ -634,6 +693,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrBlueY
         {
             get
@@ -652,6 +712,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrBlueY");
             }
         }
+        [Browsable(false)]
         public int WhiteX
         {
             get
@@ -667,6 +728,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrWhiteX
         {
             get
@@ -685,6 +747,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrWhiteX");
             }
         }
+        [Browsable(false)]
         public int WhiteY
         {
             get
@@ -700,6 +763,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public double ClrWhiteY
         {
             get
@@ -718,7 +782,9 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("ClrWhiteY");
             }
         }
+        [Browsable(false)]
         public CustomTiming[] CustomTimings { get; private set; }
+        [Browsable(false)]
         public bool DPMSStandBy
         {
             get
@@ -734,6 +800,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public bool DPMSSuspend
         {
             get
@@ -749,6 +816,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public bool DPMSActiveOff
         {
             get
@@ -764,6 +832,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public int DisplayType
         {
             get
@@ -780,6 +849,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public bool StandardsRGB
         {
             get
@@ -795,6 +865,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public bool PreferredTiming
         {
             get
@@ -810,6 +881,7 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public bool GTFSupport
         {
             get
@@ -825,7 +897,9 @@ namespace SquirrelEDID.Model
                 OnPropertyChanged("Buffer");
             }
         }
+        [Browsable(false)]
         public Descriptor[] Descriptors { get; private set; }
+        [Browsable(false)]
         public int Extensions
         {
             get
@@ -844,20 +918,8 @@ namespace SquirrelEDID.Model
         #endregion
 
         #region Constructors
-        static EDID()
-        {
-            S_EstablishedTimings = _establishedTimings;
-            S_DescriptorTypes = _descriptorTypes;
-        }
-
         public EDID(byte[] buffer)
         {
-            EstablishedTimings = _establishedTimings;
-            WhiteAndSyncLevels = _whiteAndSyncLevels;
-            AspectRatios = _aspectRatios;
-            DisplayTypesDigital = _displayTypesDigital;
-            DisplayTypesAnalog = _displayTypesAnalog;
-            DescriptorTypes = _descriptorTypes;
             if (buffer == null || buffer.Length != 128)
             {
                 Buffer = new byte[128];

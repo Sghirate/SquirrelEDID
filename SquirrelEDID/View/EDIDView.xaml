@@ -3,11 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:mdl="clr-namespace:SquirrelEDID.Model"
+             xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+             DataContext="{Binding Source={StaticResource ioc}, Path=Repository[EDIDViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <Button HorizontalAlignment="Right" VerticalAlignment="Top" Click="Button_Click">
-            <TextBlock Text="ASDASDASDASD"/>
-        </Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <TextBlock Grid.Row="0" Text="{utils:I18N EDID_Header}" HorizontalAlignment="Center"/>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <xctk:PropertyGrid AutoGenerateProperties="True" SelectedObjectName="EDID" SelectedObjectType="{x:Type mdl:EDID}" SelectedObject="{Binding EDID}">
+                    
+            </xctk:PropertyGrid>
+        </ScrollViewer>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button Command="{Binding CancelCommand}" Background="Transparent">
+                <TextBlock Text="{utils:I18N EDID_Cancel}"/>
+            </Button>
+            <Button Command="{Binding AcceptCommand}" Background="Transparent">
+                <TextBlock Text="{utils:I18N EDID_Accept}"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </UserControl>

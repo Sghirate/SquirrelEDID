@@ -117,13 +117,88 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="About_Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
+  <data name="FolderBrowser_Empty" xml:space="preserve">
+    <value>Empty</value>
+  </data>
+  <data name="FolderBrowser_NewFolder" xml:space="preserve">
+    <value>New Folder</value>
+  </data>
+  <data name="Serrings_SerialStartHelp" xml:space="preserve">
+    <value>Start value for generated serial numbers</value>
+  </data>
+  <data name="Settings_Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Settings_EDID" xml:space="preserve">
+    <value>Template EDID</value>
+  </data>
+  <data name="Settings_EDIDButtonHelp" xml:space="preserve">
+    <value>Edit EDID record</value>
+  </data>
+  <data name="Settings_EDIDHelp" xml:space="preserve">
+    <value>EDID record to be used as a template during generation</value>
+  </data>
+  <data name="Settings_Library" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="Settings_LibraryHelp" xml:space="preserve">
+    <value>Load EDID record from library (files)</value>
+  </data>
+  <data name="Settings_OutDirectory" xml:space="preserve">
+    <value>Output directory</value>
+  </data>
+  <data name="Settings_OutDirectoryButtonHelp" xml:space="preserve">
+    <value>Select output directory for generated EDID records</value>
+  </data>
+  <data name="Settings_OutDirectoryHelp" xml:space="preserve">
+    <value>Output directory for files containing generated EDID records</value>
+  </data>
+  <data name="Settings_OutProgrammer" xml:space="preserve">
+    <value>Write via programmer</value>
+  </data>
+  <data name="Settings_OutProgrammerHelp" xml:space="preserve">
+    <value>Output directly onto EDID emulators via DDC Programmer</value>
+  </data>
+  <data name="Settings_Programmer" xml:space="preserve">
+    <value>Programmer</value>
+  </data>
+  <data name="Settings_ProgrammerHelp" xml:space="preserve">
+    <value>Read EDID record using DDC Programmer</value>
+  </data>
+  <data name="Settings_SerialEnd" xml:space="preserve">
+    <value>SN end value</value>
+  </data>
+  <data name="Settings_SerialEndHelp" xml:space="preserve">
+    <value>End value for generated serial numbers</value>
+  </data>
+  <data name="Settings_SerialPrefix" xml:space="preserve">
+    <value>SN prefix</value>
+  </data>
+  <data name="Settings_SerialPrefixHelp" xml:space="preserve">
+    <value>Prefix to be applied to generated serial numbers</value>
+  </data>
+  <data name="Settings_SerialStart" xml:space="preserve">
+    <value>SN start value</value>
+  </data>
+  <data name="Settings_System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Settings_SystemHelp" xml:space="preserve">
+    <value>Load EDID record from an attached device</value>
+  </data>
+  <data name="Welcome_About" xml:space="preserve">
+    <value>About...</value>
+  </data>
+  <data name="Welcome_Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
   <data name="Welcome_Part1" xml:space="preserve">
     <value>Welcome</value>
   </data>
   <data name="Welcome_Part2" xml:space="preserve">
     <value>blalbalbalbalbalbalbalbalbalbalbala</value>
-  </data>
-  <data name="Welcome_Start" xml:space="preserve">
-    <value>Start</value>
   </data>
 </root>

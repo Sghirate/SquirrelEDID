@@ -12,7 +12,6 @@ namespace SquirrelEDID.Model
             #endregion
 
             #region Properties
-            public string[] AspectRatios { get; set; }
             public bool Used
             {
                 get
@@ -95,8 +94,6 @@ namespace SquirrelEDID.Model
             #region Constructors
             public CustomTiming(EDID parent, int firstByte) : base(parent, firstByte, 0xfa)
             {
-                AspectRatios = _parent.AspectRatios;
-
                 GetResolution();
                 GetAspectRatio();
                 GetVerticalFrequency();

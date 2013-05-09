@@ -61,6 +61,240 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Back.
+        /// </summary>
+        internal static string About_Back {
+            get {
+                return ResourceManager.GetString("About_Back", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empty.
+        /// </summary>
+        internal static string FolderBrowser_Empty {
+            get {
+                return ResourceManager.GetString("FolderBrowser_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Folder.
+        /// </summary>
+        internal static string FolderBrowser_NewFolder {
+            get {
+                return ResourceManager.GetString("FolderBrowser_NewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Start value for generated serial numbers.
+        /// </summary>
+        internal static string Serrings_SerialStartHelp {
+            get {
+                return ResourceManager.GetString("Serrings_SerialStartHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        internal static string Settings_Continue {
+            get {
+                return ResourceManager.GetString("Settings_Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template EDID.
+        /// </summary>
+        internal static string Settings_EDID {
+            get {
+                return ResourceManager.GetString("Settings_EDID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit EDID record.
+        /// </summary>
+        internal static string Settings_EDIDButtonHelp {
+            get {
+                return ResourceManager.GetString("Settings_EDIDButtonHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDID record to be used as a template during generation.
+        /// </summary>
+        internal static string Settings_EDIDHelp {
+            get {
+                return ResourceManager.GetString("Settings_EDIDHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        internal static string Settings_Library {
+            get {
+                return ResourceManager.GetString("Settings_Library", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load EDID record from library (files).
+        /// </summary>
+        internal static string Settings_LibraryHelp {
+            get {
+                return ResourceManager.GetString("Settings_LibraryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output directory.
+        /// </summary>
+        internal static string Settings_OutDirectory {
+            get {
+                return ResourceManager.GetString("Settings_OutDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select output directory for generated EDID records.
+        /// </summary>
+        internal static string Settings_OutDirectoryButtonHelp {
+            get {
+                return ResourceManager.GetString("Settings_OutDirectoryButtonHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output directory for files containing generated EDID records.
+        /// </summary>
+        internal static string Settings_OutDirectoryHelp {
+            get {
+                return ResourceManager.GetString("Settings_OutDirectoryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write via programmer.
+        /// </summary>
+        internal static string Settings_OutProgrammer {
+            get {
+                return ResourceManager.GetString("Settings_OutProgrammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output directly onto EDID emulators via DDC Programmer.
+        /// </summary>
+        internal static string Settings_OutProgrammerHelp {
+            get {
+                return ResourceManager.GetString("Settings_OutProgrammerHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programmer.
+        /// </summary>
+        internal static string Settings_Programmer {
+            get {
+                return ResourceManager.GetString("Settings_Programmer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read EDID record using DDC Programmer.
+        /// </summary>
+        internal static string Settings_ProgrammerHelp {
+            get {
+                return ResourceManager.GetString("Settings_ProgrammerHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SN end value.
+        /// </summary>
+        internal static string Settings_SerialEnd {
+            get {
+                return ResourceManager.GetString("Settings_SerialEnd", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End value for generated serial numbers.
+        /// </summary>
+        internal static string Settings_SerialEndHelp {
+            get {
+                return ResourceManager.GetString("Settings_SerialEndHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SN prefix.
+        /// </summary>
+        internal static string Settings_SerialPrefix {
+            get {
+                return ResourceManager.GetString("Settings_SerialPrefix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Prefix to be applied to generated serial numbers.
+        /// </summary>
+        internal static string Settings_SerialPrefixHelp {
+            get {
+                return ResourceManager.GetString("Settings_SerialPrefixHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SN start value.
+        /// </summary>
+        internal static string Settings_SerialStart {
+            get {
+                return ResourceManager.GetString("Settings_SerialStart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to System.
+        /// </summary>
+        internal static string Settings_System {
+            get {
+                return ResourceManager.GetString("Settings_System", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load EDID record from an attached device.
+        /// </summary>
+        internal static string Settings_SystemHelp {
+            get {
+                return ResourceManager.GetString("Settings_SystemHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About....
+        /// </summary>
+        internal static string Welcome_About {
+            get {
+                return ResourceManager.GetString("Welcome_About", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Continue.
+        /// </summary>
+        internal static string Welcome_Continue {
+            get {
+                return ResourceManager.GetString("Welcome_Continue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Welcome.
         /// </summary>
         internal static string Welcome_Part1 {
@@ -75,15 +309,6 @@ namespace SquirrelEDID.Resources {
         internal static string Welcome_Part2 {
             get {
                 return ResourceManager.GetString("Welcome_Part2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Start.
-        /// </summary>
-        internal static string Welcome_Start {
-            get {
-                return ResourceManager.GetString("Welcome_Start", resourceCulture);
             }
         }
     }

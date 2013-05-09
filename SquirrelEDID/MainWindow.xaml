@@ -3,7 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:c="clr-namespace:SquirrelEDID.View.Controls"
         xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
-        Title="MainWindow" Height="350" Width="525">
+        DataContext="{Binding Source={StaticResource ioc}, Path=Repository[MainViewModel]}"
+        Left="{Binding X, Mode=TwoWay}"
+        Top="{Binding Y, Mode=TwoWay}"
+        Width="{Binding W, Mode=TwoWay}"
+        Height="{Binding H, Mode=TwoWay}"
+        Title="SquirrelEDID">
     <Window.Resources>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="Margin" Value="2"/>
@@ -16,10 +21,15 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <c:SlideControl Grid.Row="0" View="{Binding Source={StaticResource ioc}, Path=Repository[WelcomeView]}"/>
+
+        <ScrollViewer Padding="10" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Disabled">
+            <c:SlideControl x:Name="slide"  Grid.Row="0"/>
+        </ScrollViewer>
         <Grid Grid.Row="1" Background="AliceBlue">
-            <TextBlock Margin="5" Text="{Binding tooltip}"/>
+            <TextBlock Margin="5" Text="{DynamicResource tooltip}"/>
+            <Border HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="5" CornerRadius="2" Background="Gray" Width="10" Height="10">
+                <Rectangle Width="{StaticResource inputHeight}" Fill="Green" Margin="2"/>
+            </Border>
         </Grid>
     </Grid>
 </Window>

@@ -2,9 +2,9 @@
 
 namespace SquirrelEDID.View
 {
-    public partial class WelcomeView : UserControl
+    public partial class AboutView : UserControl
     {
-        public WelcomeView()
+        public AboutView()
         {
             InitializeComponent();
         }

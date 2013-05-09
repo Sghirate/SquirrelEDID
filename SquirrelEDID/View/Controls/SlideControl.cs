@@ -52,11 +52,10 @@ namespace SquirrelEDID.View.Controls
         #endregion
 
         #region Constructors
-        public SlideControl()
+        static SlideControl()
         {
             DefaultStyleKeyProperty.OverrideMetadata(typeof(SlideControl), new FrameworkPropertyMetadata(typeof(SlideControl)));
-            Messenger<FrameworkElement, SlideDirection>.AddListener(OnSlide);
-        } 
+        }
         #endregion
 
         #region Methods
@@ -100,12 +99,12 @@ namespace SquirrelEDID.View.Controls
             // Check, if we have a queued animation, and if yes: play
             if (_cache != null)
             {
-                OnSlide(_cache.Item1, _cache.Item2);
+                Slide(_cache.Item1, _cache.Item2);
                 _cache = null;
             }
         }
 
-        private void OnSlide(FrameworkElement content, SlideDirection direction)
+        public void Slide(FrameworkElement content, SlideDirection direction)
         {
             if (_back.Content == content)
                 return;
