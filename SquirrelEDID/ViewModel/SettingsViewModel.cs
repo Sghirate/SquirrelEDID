@@ -199,7 +199,6 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleLoadEDIDFromLibraryExecuted(object obj)
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Library);
         }
 
         private bool HandleLoadEDIDFromLibraryCanExecute(object obj)
@@ -209,7 +208,6 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleLoadEDIDFromSystemExecuted(object obj)
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.System);
         }
 
         private bool HandleLoadEDIDFromSystemCanExecute(object obj)

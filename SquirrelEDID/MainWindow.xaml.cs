@@ -21,8 +21,11 @@ namespace SquirrelEDID
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Elysium.Controls.Window
     {
+        Prompts _cPrompt = Prompts.None;
+        Queue<Prompts> _prompts = new Queue<Prompts>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -31,8 +34,42 @@ namespace SquirrelEDID
             LocationChanged += (s, e) => Snap();
 
             Messenger<ApplicationStates>.AddListener(GotoState);
+            Messenger<Prompts>.AddListener(ShowPrompt);
 
             Loaded += (s, e) => GotoState(ApplicationStates.Welcome);
+        }
+
+        private Prompts GetTargetPrompt(Prompts p)
+        {
+            if (_cPrompt == Prompts.None)
+                return p;
+
+            if (p != Prompts.None)
+                _prompts.Enqueue(p);
+
+            if (_prompts.Count > 0)
+                p = _prompts.Dequeue();
+
+            return p;
+        }
+
+        private void ShowPrompt(Prompts p)
+        {
+            p = GetTargetPrompt(p);
+
+            if (p == Prompts.None)
+            {
+                prompt.Slide(null, SlideDirection.Down);
+                _cPrompt = p;
+                return;
+            }
+
+            FrameworkElement view = (FrameworkElement)IoC.Repository["Prompt" + p.ToString() + "View"];
+            if (view == null)
+                return;
+
+            prompt.Slide(view, SlideDirection.Up, true);
+            _cPrompt = p;
         }
 
         private void GotoState(ApplicationStates state)

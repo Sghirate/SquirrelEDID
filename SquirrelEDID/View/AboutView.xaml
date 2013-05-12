@@ -14,7 +14,10 @@
         </Grid.RowDefinitions>
         
         <Button Grid.Row="20" HorizontalAlignment="Right" Command="{Binding BackCommand}">
-            <TextBlock Text="{utils:I18N About_Back}"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{utils:I18N About_Back}" VerticalAlignment="Center"/>
+                <Image Height="32" Margin="10,0,0,0" Source="/SquirrelEDID;component/Resources/Images/Next.png"/>
+            </StackPanel>
         </Button>
     </Grid>
 </UserControl>

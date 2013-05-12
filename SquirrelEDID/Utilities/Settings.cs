@@ -82,10 +82,15 @@ namespace SquirrelEDID.Utilities
 
                 object value = attr.DefaultValue;
                 if (String.IsNullOrEmpty(main))
+                {
                     if (ContainsKey(attr.Key))
                         value = Get(attr.Key);
-                    else if(ContainsKey(main, attr.Key))
+                }
+                else
+                {
+                    if (ContainsKey(main, attr.Key))
                         value = Get(main, attr.Key);
+                }
 
                 if (attr.Converter != null && attr.Converter.GetInterfaces().Any(i => i == typeof(IValueConverter)))
                 {
@@ -118,10 +123,10 @@ namespace SquirrelEDID.Utilities
                     value = conv.ConvertBack(value, null, null, null);
                 }
 
-                if (!String.IsNullOrEmpty(main))
-                    Set(value, main, attr.Key);
-                else
+                if (String.IsNullOrEmpty(main))
                     Set(value, attr.Key);
+                else
+                    Set(value, main, attr.Key);
             }
         }
 

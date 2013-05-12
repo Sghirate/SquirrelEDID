@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SquirrelEDID.View.EDIDView"
+﻿<UserControl
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,29 +6,82 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:mdl="clr-namespace:SquirrelEDID.Model"
              xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
-             DataContext="{Binding Source={StaticResource ioc}, Path=Repository[EDIDViewModel]}"
+             xmlns:conv="clr-namespace:SquirrelEDID.Utilities.Converters"
+             xmlns:metro="http://schemas.codeplex.com/elysium"
+             xmlns:params="http://schemas.codeplex.com/elysium/params" x:Class="SquirrelEDID.View.EDIDView"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <conv:ByteArraySegmentationConverter x:Key="splitConv"/>
+        <Style TargetType="xctk:PropertyGrid">
+            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.DataContext>
+        <Binding Path="Repository[EDIDViewModel]" Source="{StaticResource ioc}"/>
+    </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        
-        <TextBlock Grid.Row="0" Text="{utils:I18N EDID_Header}" HorizontalAlignment="Center"/>
-        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <xctk:PropertyGrid AutoGenerateProperties="True" SelectedObjectName="EDID" SelectedObjectType="{x:Type mdl:EDID}" SelectedObject="{Binding EDID}">
-                    
+        <!--<TextBlock Grid.Row="0" Text="{utils:I18N EDID_Header}" HorizontalAlignment="Center"/>-->
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <metro:CommandButton Header="{utils:I18N EDID_FromLibrary}" Command="{Binding FromLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromLibraryHelp}">
+                <Image Source="/SquirrelEDID;component/Resources/Images/Database.png" Width="32"/>
+            </metro:CommandButton>
+            <metro:CommandButton Header="{utils:I18N EDID_FromScreen}" Command="{Binding FromScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromScreenHelp}">
+                <Image Source="/SquirrelEDID;component/Resources/Images/Display.png" Width="32"/>
+            </metro:CommandButton>
+            <metro:CommandButton Header="{utils:I18N EDID_FromProgrammer}" Command="{Binding FromProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromProgrammerHelp}">
+                <Image Source="/SquirrelEDID;component/Resources/Images/Programmer.png" Width="32"/>
+            </metro:CommandButton>
+            <Rectangle HorizontalAlignment="Stretch" Width="2" Fill="{DynamicResource ForegroundBrush}"/>
+            <metro:CommandButton/>
+        </StackPanel>
+        <DataGrid Grid.Row="1" AutoGenerateColumns="False" RowHeaderWidth="0"
+			Background="{DynamicResource BackgroundBrush}" RowBackground="{DynamicResource BackgroundBrush}" AlternatingRowBackground="{DynamicResource BackgroundBrush}"
+			Foreground="{DynamicResource ForegroundBrush}"
+			BorderBrush="{DynamicResource AccentBrush}">
+            <DataGrid.Resources>
+                <Style TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+                    <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Padding" Value="5,0,5,0"/>
+                </Style>
+            </DataGrid.Resources>
+            <DataGrid.ItemsSource>
+                <Binding Converter="{StaticResource splitConv}" Path="EDID.Buffer"/>
+            </DataGrid.ItemsSource>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Offset" Binding="{Binding Offset}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="0" Binding="{Binding [0], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="1" Binding="{Binding [1], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="2" Binding="{Binding [2], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="3" Binding="{Binding [3], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="4" Binding="{Binding [4], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="5" Binding="{Binding [5], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="6" Binding="{Binding [6], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="7" Binding="{Binding [7], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="8" Binding="{Binding [8], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="9" Binding="{Binding [9], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="10" Binding="{Binding [10], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="11" Binding="{Binding [11], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="12" Binding="{Binding [12], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="13" Binding="{Binding [13], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="14" Binding="{Binding [14], StringFormat=\{0:X2\}}"/>
+                <DataGridTextColumn Header="15" Binding="{Binding [15], StringFormat=\{0:X2\}}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+            <xctk:PropertyGrid SelectedObject="{Binding EDID}" ShowSortOptions="False" ShowSummary="False" ShowTitle="False">
             </xctk:PropertyGrid>
         </ScrollViewer>
-        <StackPanel Grid.Row="2" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Button Command="{Binding CancelCommand}" Background="Transparent">
-                <TextBlock Text="{utils:I18N EDID_Cancel}"/>
-            </Button>
-            <Button Command="{Binding AcceptCommand}" Background="Transparent">
-                <TextBlock Text="{utils:I18N EDID_Accept}"/>
-            </Button>
-        </StackPanel>
     </Grid>
 </UserControl>

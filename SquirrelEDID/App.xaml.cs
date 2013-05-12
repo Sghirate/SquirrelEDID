@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using SquirrelEDID.Utilities.Extensions;
 using System.Reflection;
+using System.Windows.Media;
 
 namespace SquirrelEDID
 {
@@ -25,9 +26,15 @@ namespace SquirrelEDID
         EDID,
         Programmer,
         Writer,
-        Library,
-        System,
         FolderBrowser
+    }
+
+    public enum Prompts
+    {
+        None,
+        Screen,
+        Programmer,
+        Test
     }
 
     /// <summary>
@@ -40,6 +47,9 @@ namespace SquirrelEDID
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            Elysium.Manager.Apply(this, Elysium.Theme.Dark, Elysium.AccentBrushes.Blue, Brushes.White);
+
+
             CacheViews();
             InitSettings();
             BuildSlideDirections();
@@ -77,12 +87,10 @@ namespace SquirrelEDID
         private static void BuildSlideDirections()
         {
             SlideDirections = new List<Tuple<ApplicationStates, ApplicationStates, SlideDirection>>();
-            AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.About, SlideDirection.Down);
-            AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.Settings, SlideDirection.Left);
+            AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.About, SlideDirection.Right);
+            AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.EDID, SlideDirection.Left);
             AddSlideDirection(ApplicationStates.Settings, ApplicationStates.EDID, SlideDirection.Down);
             AddSlideDirection(ApplicationStates.Settings, ApplicationStates.Writer, SlideDirection.Left);
-            AddSlideDirection(ApplicationStates.Settings, ApplicationStates.Library, SlideDirection.Up);
-            AddSlideDirection(ApplicationStates.Settings, ApplicationStates.System, SlideDirection.Up);
             AddSlideDirection(ApplicationStates.Settings, ApplicationStates.FolderBrowser, SlideDirection.Up);
         }
 
@@ -92,6 +100,7 @@ namespace SquirrelEDID
             
             settings.LoadObject(IoC.Get<MainViewModel>());
             settings.LoadObject(IoC.Get<SettingsViewModel>());
+            settings.LoadObject(IoC.Get<EDIDViewModel>());
             
             IoC.Set<Settings>(settings);
         }
@@ -102,6 +111,7 @@ namespace SquirrelEDID
 
             settings.SaveObject(IoC.Get<MainViewModel>());
             settings.SaveObject(IoC.Get<SettingsViewModel>());
+            settings.SaveObject(IoC.Get<EDIDViewModel>());
 
             settings.Save();
         }
@@ -116,14 +126,14 @@ namespace SquirrelEDID
             IoC.Set<SettingsView>(new SettingsView());
             IoC.Set<FolderBrowserViewModel>(new FolderBrowserViewModel());
             IoC.Set<FolderBrowserView>(new FolderBrowserView());
-            IoC.Set<SystemViewModel>(new SystemViewModel());
-            IoC.Set<SystemView>(new SystemView());
             IoC.Set<EDIDViewModel>(new EDIDViewModel());
             IoC.Set<EDIDView>(new EDIDView());
             IoC.Set<ProgrammerViewModel>(new ProgrammerViewModel());
             IoC.Set<ProgrammerView>(new ProgrammerView());
             IoC.Set<WriterViewModel>(new WriterViewModel());
             IoC.Set<WriterView>(new WriterView());
+
+            IoC.Set<PromptTestView>(new PromptTestView());
         }
     }
 }

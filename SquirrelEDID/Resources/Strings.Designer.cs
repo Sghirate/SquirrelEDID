@@ -70,6 +70,78 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Accept.
+        /// </summary>
+        internal static string Accept {
+            get {
+                return ResourceManager.GetString("Accept", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Library.
+        /// </summary>
+        internal static string EDID_FromLibrary {
+            get {
+                return ResourceManager.GetString("EDID_FromLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load EDID record from library.
+        /// </summary>
+        internal static string EDID_FromLibraryHelp {
+            get {
+                return ResourceManager.GetString("EDID_FromLibraryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programmer.
+        /// </summary>
+        internal static string EDID_FromProgrammer {
+            get {
+                return ResourceManager.GetString("EDID_FromProgrammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Read EDID record using an attached eyevis DDC Programmer.
+        /// </summary>
+        internal static string EDID_FromProgrammerHelp {
+            get {
+                return ResourceManager.GetString("EDID_FromProgrammerHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screen.
+        /// </summary>
+        internal static string EDID_FromScreen {
+            get {
+                return ResourceManager.GetString("EDID_FromScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load EDID record from an attached monitor.
+        /// </summary>
+        internal static string EDID_FromScreenHelp {
+            get {
+                return ResourceManager.GetString("EDID_FromScreenHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty.
         /// </summary>
         internal static string FolderBrowser_Empty {
@@ -304,7 +376,13 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to blalbalbalbalbalbalbalbalbalbalbala.
+        ///   Looks up a localized string similar to This tool is designed to edit and handle EDID records in several ways.
+        ///* Read EDIDs directly from attached displays.
+        ///* Read EDIDs from an attached eyeVis DDC Programmer.
+        ///* Edit read EDID records.
+        ///* Generate EDID sets with varying serial numbers, from a single template EDID.
+        ///* Write EDIDs using an eyeVis DDC Programmer.
+        ///* Override an EDID with your very own creation..
         /// </summary>
         internal static string Welcome_Part2 {
             get {

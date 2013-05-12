@@ -13,13 +13,19 @@
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{utils:I18N Welcome_Part1}" FontSize="24" Margin="10" TextAlignment="Center"/>
-        <TextBlock Grid.Row="1" Text="{utils:I18N Welcome_Part2}" TextWrapping="Wrap" Margin="10"/>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Background="Transparent" Command="{Binding StartCommand}">
-            <TextBlock Text="{utils:I18N Welcome_Continue}"/>
+        <TextBlock Grid.Row="0" Text="{utils:I18N Welcome_Part1}" FontSize="32" Margin="10" TextAlignment="Center"/>
+        <TextBlock Grid.Row="1" Text="{utils:I18N Welcome_Part2}" FontSize="22" TextWrapping="Wrap" Margin="10"/>
+        <Button Grid.Row="2" HorizontalAlignment="Right" Command="{Binding StartCommand}">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{utils:I18N Welcome_Continue}" VerticalAlignment="Center"/>
+                <Image Source="/SquirrelEDID;component/Resources/Images/Next.png" Height="32" Margin="10,0,0,0"/>
+            </StackPanel>
         </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Left" Background="Transparent" Command="{Binding AboutCommand}">
-            <TextBlock Text="{utils:I18N Welcome_About}"/>
+        <Button Grid.Row="2" HorizontalAlignment="Left" Command="{Binding AboutCommand}">
+            <StackPanel Orientation="Horizontal">
+                <Image Height="32" Source="/SquirrelEDID;component/Resources/Images/Question.png" Margin="0,0,10,0"/>
+                <TextBlock Text="{utils:I18N Welcome_About}" VerticalAlignment="Center"/>
+            </StackPanel>
         </Button>
     </Grid>
 </UserControl>

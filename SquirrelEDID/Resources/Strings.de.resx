@@ -120,6 +120,30 @@
   <data name="About_Back" xml:space="preserve">
     <value>Zurück</value>
   </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Annehmen</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="EDID_FromLibrary" xml:space="preserve">
+    <value>Bibliothek</value>
+  </data>
+  <data name="EDID_FromLibraryHelp" xml:space="preserve">
+    <value>Lade EDID Satz aus der Bibliothek</value>
+  </data>
+  <data name="EDID_FromProgrammer" xml:space="preserve">
+    <value>Programmer</value>
+  </data>
+  <data name="EDID_FromProgrammerHelp" xml:space="preserve">
+    <value>Lese EDID Satz über einen angeschlossenen eyevis DDC Programmer</value>
+  </data>
+  <data name="EDID_FromScreen" xml:space="preserve">
+    <value>Bildschirm</value>
+  </data>
+  <data name="EDID_FromScreenHelp" xml:space="preserve">
+    <value>Lade EDID Satz von einem angeschlossenen Monitor</value>
+  </data>
   <data name="FolderBrowser_Empty" xml:space="preserve">
     <value>Leer</value>
   </data>
@@ -199,6 +223,12 @@
     <value>Willkommen</value>
   </data>
   <data name="Welcome_Part2" xml:space="preserve">
-    <value>jfdoiahfgohadgiuohragibdfgjhaoukghaioghadfioghadflhgadfh</value>
+    <value>Dieses Tool dient zum Bearbeiten und Weitervewenden von EDID Datensätzen.
+* Lese EDIDs direkt von angeschlossenen Bildschirmen.
+* Lese EDIDs über einen angeschlossenen eyeVis DDC Programmer.
+* Bearbeite EDID Datensätze.
+* Generiere EDIDs mit verschiedenen Seriennummern anhand einer Vorlage EDID.
+* Schreibe EDIDs über einen eyeVis DDC Programmer.
+* Überschreibe eine EDID mit deiner eigenen Kreation.</value>
   </data>
 </root>

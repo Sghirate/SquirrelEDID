@@ -52,5 +52,12 @@ namespace SquirrelEDID.View
 
             vm.ExpandCommand.Execute(tvm.DataContext);
         }
+
+        private void ScrollViewer_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            ScrollViewer sv = (ScrollViewer)sender;
+            sv.ScrollToVerticalOffset(sv.VerticalOffset - e.Delta);
+            e.Handled = true;
+        }
     }
 }

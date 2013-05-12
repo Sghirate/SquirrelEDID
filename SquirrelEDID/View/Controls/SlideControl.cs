@@ -25,16 +25,19 @@ namespace SquirrelEDID.View.Controls
         #endregion
 
         #region Fields
+        private SolidColorBrush _bg;
         private ContentControl _front;
         private ContentControl _back;
         private TranslateTransform _frontTransform;
         private TranslateTransform _backTransform;
         private bool _inAnimation = false;
         private Tuple<FrameworkElement, SlideDirection> _cache;
+        private Color _clrBlackTransparent = Color.FromArgb(0, 0, 0, 0);
         #endregion
 
         #region DependencyProperties
         public static readonly DependencyProperty ViewProperty = DependencyProperty.Register("View", typeof(FrameworkElement), typeof(SlideControl), new PropertyMetadata(new PropertyChangedCallback(ViewChanged)));
+        public static readonly DependencyProperty ModalBackgroundColorProperty = DependencyProperty.Register("ModalBackgroundColor", typeof(Color), typeof(SlideControl), new PropertyMetadata(Colors.Black, new PropertyChangedCallback(ModalBackgroundColorChanged)));
         public static readonly DependencyProperty TransitionTimeProperty = DependencyProperty.Register("TransitionTime", typeof(Duration), typeof(SlideControl)); 
         #endregion
 
@@ -48,7 +51,12 @@ namespace SquirrelEDID.View.Controls
         {
             get { return (Duration)GetValue(TransitionTimeProperty); }
             set { SetValue(TransitionTimeProperty, value); }
-        } 
+        }
+        public Color ModalBackgroundColor
+        {
+            get { return (Color)GetValue(ModalBackgroundColorProperty); }
+            set { SetValue(ModalBackgroundColorProperty, value); }
+        }
         #endregion
 
         #region Constructors
@@ -69,7 +77,7 @@ namespace SquirrelEDID.View.Controls
             _front.RenderTransform = _frontTransform;
             _back.RenderTransform = _backTransform;
 
-            _back.Background = Brushes.Green;
+            _bg = new SolidColorBrush(ModalBackgroundColor);
 
             SetView(View);
         }
@@ -81,6 +89,15 @@ namespace SquirrelEDID.View.Controls
 
             if (c != null)
                 c.SetView(ele);
+        }
+
+        private static void ModalBackgroundColorChanged(DependencyObject obj, DependencyPropertyChangedEventArgs e)
+        {
+            Color clr = (Color)e.NewValue;
+            SlideControl c = obj as SlideControl;
+
+            if (c != null)
+                c._bg = new SolidColorBrush(clr);
         }
 
         private void SetView(FrameworkElement ele)
@@ -104,7 +121,7 @@ namespace SquirrelEDID.View.Controls
             }
         }
 
-        public void Slide(FrameworkElement content, SlideDirection direction)
+        public void Slide(FrameworkElement content, SlideDirection direction, bool modal = false)
         {
             if (_back.Content == content)
                 return;
@@ -152,11 +169,40 @@ namespace SquirrelEDID.View.Controls
                     break;
             }
 
+            if (modal)
+            {
+                ColorAnimation ca = new ColorAnimation { Duration = TransitionTime, To = ModalBackgroundColor };
+                if (this.Background != null)
+                {
+                    ca.From = _bg.Color;
+                }
+                else
+                {
+                    this.Background = _bg;
+                    ca.From = _clrBlackTransparent;
+                }
+                _bg.BeginAnimation(SolidColorBrush.ColorProperty, ca);
+            }
+            else
+            {
+                if (this.Background != null)
+                {
+                    ColorAnimation ca = new ColorAnimation { Duration = TransitionTime, From = ModalBackgroundColor, To = _clrBlackTransparent };
+                    ca.Completed += (s, e) => { this.Background = null; };
+                    _bg.BeginAnimation(SolidColorBrush.ColorProperty, ca);
+                }
+            }
+
             _front.Content = content;
             _front.Visibility = System.Windows.Visibility.Visible;
             _frontTransform.BeginAnimation(dp, daFront);
             _backTransform.BeginAnimation(dp, daBack);
         } 
+
+        private void DeModalEnd()
+        {
+
+        }
         #endregion
     }
 }

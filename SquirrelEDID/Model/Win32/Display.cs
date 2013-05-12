@@ -11,6 +11,11 @@ namespace SquirrelEDID.Model.Win32
         public string Description { get; set; }
         public byte[] EDID { get; set; }
         public object Additional { get; set; }
+
+        public void OverrideEDID(byte[] newEDID)
+        {
+
+        }
     }
 
     public static class Display

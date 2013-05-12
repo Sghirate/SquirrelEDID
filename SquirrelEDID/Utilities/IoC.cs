@@ -24,6 +24,7 @@ namespace SquirrelEDID.Utilities
         /// Sollen nicht gespeicherte Singletons beim Abfragen erstellt werden? (standard: ja)
         /// </summary>
         public static bool CreateObjects { get; set; }
+        public static Dictionary<string, Type> KnownTypes { get; set; }
         #endregion
 
         #region Constructors
@@ -31,6 +32,7 @@ namespace SquirrelEDID.Utilities
         {
             Repository = new IocIndexer();
             CreateObjects = true;
+            KnownTypes = new Dictionary<string, Type>();
             Objects = new Dictionary<Type, Dictionary<string, object>>();
         }
 
@@ -54,6 +56,7 @@ namespace SquirrelEDID.Utilities
         /// <param name="obj">Objekt</param>
         public static void Set<T>(string key, T obj)
         {
+            KnownTypes[typeof(T).Name] = typeof(T);
             Repository[typeof(T), key] = obj;
         }
 
@@ -75,6 +78,7 @@ namespace SquirrelEDID.Utilities
         /// <returns>Objekt</returns>
         public static T Get<T>(string key)
         {
+            KnownTypes[typeof(T).Name] = typeof(T);
             return (T)Repository[typeof(T), key];
         }
 
@@ -281,9 +285,8 @@ namespace SquirrelEDID.Utilities
 
                 Type t = null;
 
-                Dictionary<string, Type> known = Get<Dictionary<string, Type>>("KnownTypes");
-                if (known.ContainsKey(typeName))
-                    return known[typeName];
+                if (IoC.KnownTypes.ContainsKey(typeName))
+                    return IoC.KnownTypes[typeName];
 
                 if (t == null)
                 {
@@ -316,7 +319,7 @@ namespace SquirrelEDID.Utilities
                 }
 
                 //Type cachen, um spätere Zugriffe zu beschleunigen
-                known[typeName] = t;
+                IoC.KnownTypes[typeName] = t;
 
                 return t;
             }

@@ -28,7 +28,7 @@ namespace SquirrelEDID.ViewModel
         #region Methods
         private void HandleStartExecuted(object obj)
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Settings);
+            Messenger<ApplicationStates>.Invoke(ApplicationStates.EDID);
         }
 
         private void HandleAboutExecuted(object obj)

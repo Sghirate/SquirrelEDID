@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace SquirrelEDID.View
 {
     /// <summary>
-    /// Interaction logic for LibraryView.xaml
+    /// Interaction logic for PromptProgrammerView.xaml
     /// </summary>
-    public partial class LibraryView : UserControl
+    public partial class PromptProgrammerView : UserControl
     {
-        public LibraryView()
+        public PromptProgrammerView()
         {
             InitializeComponent();
         }

@@ -10,7 +10,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <conv:FSItemToIconConverter x:Key="iconConv"/>
+        <conv:FSItemToIconConverter x:Key="iconConv" 
+                                    CDRom="/SquirrelEDID;component/Resources/Images/CDRom.png" 
+                                    Drive="/SquirrelEDID;component/Resources/Images/Drive.png" 
+                                    Folder="/SquirrelEDID;component/Resources/Images/FSFolder.png" 
+                                    Forbidden="/SquirrelEDID;component/Resources/Images/X.png" 
+                                    NetDrive="/SquirrelEDID;component/Resources/Images/Networked.png" 
+                                    RAM="/SquirrelEDID;component/Resources/Images/RAM.png" 
+                                    Removable="/SquirrelEDID;component/Resources/Images/USB.png"/>
         <ContextMenu x:Key="ctx">
             
         </ContextMenu>
@@ -25,7 +32,7 @@
         
         <TextBlock Grid.Row="0" Text="{utils:I18N FolderBrowser_Header}" HorizontalAlignment="Center"/>
         <TextBlock Grid.Row="1" Text="{Binding SelectedPath}"/>
-        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Stretch">
+        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" VerticalContentAlignment="Stretch" PreviewMouseWheel="ScrollViewer_PreviewMouseWheel">
             <TreeView ItemsSource="{Binding Root.Children}" TreeViewItem.Selected="TreeView_Selected" TreeViewItem.Expanded="TreeView_Expanded" Background="Transparent">
                 <TreeView.ItemTemplate>
                     <HierarchicalDataTemplate ItemsSource="{Binding Children}">
@@ -35,8 +42,8 @@
                             </DataTrigger>
                         </HierarchicalDataTemplate.Triggers>
                         <StackPanel Orientation="Horizontal" ContextMenu="{StaticResource ctx}">
-                            <Image/>
-                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="12" FontWeight="Bold"/>
+                            <Image Source="{Binding ., Converter={StaticResource iconConv}}" Height="16"/>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center" FontSize="14" FontWeight="Bold"/>
                         </StackPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>

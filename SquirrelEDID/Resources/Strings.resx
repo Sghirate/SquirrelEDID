@@ -120,6 +120,30 @@
   <data name="About_Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="Accept" xml:space="preserve">
+    <value>Accept</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="EDID_FromLibrary" xml:space="preserve">
+    <value>Library</value>
+  </data>
+  <data name="EDID_FromLibraryHelp" xml:space="preserve">
+    <value>Load EDID record from library</value>
+  </data>
+  <data name="EDID_FromProgrammer" xml:space="preserve">
+    <value>Programmer</value>
+  </data>
+  <data name="EDID_FromProgrammerHelp" xml:space="preserve">
+    <value>Read EDID record using an attached eyevis DDC Programmer</value>
+  </data>
+  <data name="EDID_FromScreen" xml:space="preserve">
+    <value>Screen</value>
+  </data>
+  <data name="EDID_FromScreenHelp" xml:space="preserve">
+    <value>Load EDID record from an attached monitor</value>
+  </data>
   <data name="FolderBrowser_Empty" xml:space="preserve">
     <value>Empty</value>
   </data>
@@ -199,6 +223,12 @@
     <value>Welcome</value>
   </data>
   <data name="Welcome_Part2" xml:space="preserve">
-    <value>blalbalbalbalbalbalbalbalbalbalbala</value>
+    <value>This tool is designed to edit and handle EDID records in several ways.
+* Read EDIDs directly from attached displays.
+* Read EDIDs from an attached eyeVis DDC Programmer.
+* Edit read EDID records.
+* Generate EDID sets with varying serial numbers, from a single template EDID.
+* Write EDIDs using an eyeVis DDC Programmer.
+* Override an EDID with your very own creation.</value>
   </data>
 </root>
