@@ -464,7 +464,7 @@ namespace SquirrelEDID.Model
                 Buffer[23] = (byte)(((int)((value * 100.0) - 100.0)) & 0xff);
 
                 Validify();
-                OnPropertyChanged("RawGamma");
+                OnPropertyChanged("Gamma");
                 OnPropertyChanged("Buffer");
             }
         }

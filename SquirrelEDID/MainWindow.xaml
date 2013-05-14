@@ -5,9 +5,6 @@
         xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
         xmlns:metro="http://schemas.codeplex.com/elysium"
         xmlns:params="http://schemas.codeplex.com/elysium/params"
-        params:Manager.Theme="Dark"
-        params:Manager.AccentBrush="{x:Static metro:AccentBrushes.Blue}"
-        params:Manager.ContrastBrush="White"
         DataContext="{Binding Source={StaticResource ioc}, Path=Repository[MainViewModel]}"
         Left="{Binding X, Mode=TwoWay}"
         Top="{Binding Y, Mode=TwoWay}"
@@ -35,7 +32,47 @@
 
     <metro:Window.ApplicationBar>
         <metro:ApplicationBar>
-            <metro:CommandButton Header="Notification" Command="{Binding StartCommand}"/>
+            <metro:DropDownCommandButton Header="{utils:I18N Theme}" Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs Name="ThemeGlyph" FontRenderingEmSize="24" StyleSimulations="BoldSimulation" UnicodeString="T" Fill="#FF000000" OriginX="0" OriginY="0" Initialized="Glyph_Initialized"/>
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu>
+                        <MenuItem Header="{utils:I18N Theme_Dark}" Command="{Binding ThemeDarkCommand}"/>
+                        <MenuItem Header="{utils:I18N Theme_Light}" Command="{Binding ThemeLightCommand}"/>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
+            <metro:DropDownCommandButton Header="{utils:I18N Theme_AccentColor}" Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs Name="AccentGlyph" FontRenderingEmSize="24" StyleSimulations="BoldSimulation" UnicodeString="A" Fill="#FF000000" OriginX="0" OriginY="0" Initialized="Glyph_Initialized" />
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu ItemsSource="{Binding AccentBrushes}">
+                        <metro:Submenu.ItemTemplate>
+                            <DataTemplate>
+                                <MenuItem Header="{Binding .}" Command="{Binding Source={StaticResource ioc}, Path=Repository[MainViewModel].AccentColorCommand}" CommandParameter="{Binding .}">
+                                    <MenuItem.Icon>
+                                        <Rectangle Fill="{Binding .}" Width="32" Height="16"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </DataTemplate>
+                        </metro:Submenu.ItemTemplate>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
+            <metro:DropDownCommandButton Header="{utils:I18N Theme_ContrastColor}" Margin="{Binding RelativeSource={RelativeSource Self}, Path=(params:General.BoldPadding), Mode=OneWay}">
+                <Glyphs Name="ContrastGlyph" FontRenderingEmSize="24" StyleSimulations="BoldSimulation" UnicodeString="C" Fill="#FF000000" OriginX="0" OriginY="0" Initialized="Glyph_Initialized" />
+                <metro:DropDownCommandButton.Submenu>
+                    <metro:Submenu ItemsSource="{Binding ContrastBrushes}">
+                        <metro:Submenu.ItemTemplate>
+                            <DataTemplate>
+                                <MenuItem Header="{Binding .}" Command="{Binding Source={StaticResource ioc}, Path=Repository[MainViewModel].ContrastColorCommand}" CommandParameter="{Binding .}">
+                                    <MenuItem.Icon>
+                                        <Rectangle Fill="{Binding .}" Width="32" Height="16"/>
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </DataTemplate>
+                        </metro:Submenu.ItemTemplate>
+                    </metro:Submenu>
+                </metro:DropDownCommandButton.Submenu>
+            </metro:DropDownCommandButton>
         </metro:ApplicationBar>
     </metro:Window.ApplicationBar>
 </metro:Window>

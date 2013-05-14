@@ -7,7 +7,6 @@ using SquirrelEDID.View.Controls;
 using SquirrelEDID.ViewModel;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Linq;
 using System.Windows;
@@ -15,6 +14,9 @@ using System.Windows.Controls;
 using SquirrelEDID.Utilities.Extensions;
 using System.Reflection;
 using System.Windows.Media;
+using Elysium;
+using SquirrelEDID.Utilities.Converters;
+using System.IO;
 
 namespace SquirrelEDID
 {
@@ -22,10 +24,7 @@ namespace SquirrelEDID
     {
         Welcome,
         About,
-        Settings,
         EDID,
-        Programmer,
-        Writer,
         FolderBrowser
     }
 
@@ -34,7 +33,7 @@ namespace SquirrelEDID
         None,
         Screen,
         Programmer,
-        Test
+        Library
     }
 
     /// <summary>
@@ -42,18 +41,27 @@ namespace SquirrelEDID
     /// </summary>
     public partial class App : Application
     {
+        [Setting(Key = "Theme", DefaultValue = "Dark", Converter = typeof(StringToThemeConverter))]
+        public Theme Theme { get; set; }
+        [Setting(Key = "AccentBrush", DefaultValue = "#FF017BCD", Converter = typeof(StringToSolidColorBrushConverter))]
+        public SolidColorBrush AccentBrush { get; set; }
+        [Setting(Key = "ContrastBrush", DefaultValue = "#FFFFFFFF", Converter = typeof(StringToSolidColorBrushConverter))]
+        public SolidColorBrush ContrastBrush { get; set; }
+
         public static ApplicationStates CurrentState { get; set; }
         public static List<Tuple<ApplicationStates, ApplicationStates, SlideDirection>> SlideDirections { get; set; }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            Elysium.Manager.Apply(this, Elysium.Theme.Dark, Elysium.AccentBrushes.Blue, Brushes.White);
-
+            IoC.Set<App>(this);
+            Resources["app"] = this;
 
             CacheViews();
             InitSettings();
             BuildSlideDirections();
             IoC.Set<Programmer>(new Programmer());
+
+            ApplyTheme();
 
             CurrentState = ApplicationStates.Welcome;
 
@@ -62,11 +70,17 @@ namespace SquirrelEDID
 
         protected override void OnExit(ExitEventArgs e)
         {
+            string pathStrings = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "missing_strings");
+            if (File.Exists(pathStrings))
+                File.Delete(pathStrings);
+            var missing = I18NExtension.Missing.Select(str => String.Format("{0}\t...", str));
+            File.AppendAllLines(pathStrings, missing);
+
             SaveSettings();
             base.OnExit(e);
         }
 
-        private static void AddSlideDirection(ApplicationStates from, ApplicationStates to, SlideDirection dir)
+        private void AddSlideDirection(ApplicationStates from, ApplicationStates to, SlideDirection dir)
         {
             // There . . . 
             SlideDirections.Add(new Tuple<ApplicationStates, ApplicationStates, SlideDirection>(from, to, dir));
@@ -84,56 +98,54 @@ namespace SquirrelEDID
             // By Bilbo Baggins
         }
 
-        private static void BuildSlideDirections()
+        private void BuildSlideDirections()
         {
             SlideDirections = new List<Tuple<ApplicationStates, ApplicationStates, SlideDirection>>();
             AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.About, SlideDirection.Right);
             AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.EDID, SlideDirection.Left);
-            AddSlideDirection(ApplicationStates.Settings, ApplicationStates.EDID, SlideDirection.Down);
-            AddSlideDirection(ApplicationStates.Settings, ApplicationStates.Writer, SlideDirection.Left);
-            AddSlideDirection(ApplicationStates.Settings, ApplicationStates.FolderBrowser, SlideDirection.Up);
         }
 
-        private static void InitSettings()
+        private void InitSettings()
         {
             Settings settings = Settings.Load("settings.json");
-            
+
+            settings.LoadObject(this);
             settings.LoadObject(IoC.Get<MainViewModel>());
-            settings.LoadObject(IoC.Get<SettingsViewModel>());
             settings.LoadObject(IoC.Get<EDIDViewModel>());
             
             IoC.Set<Settings>(settings);
         }
 
-        private static void SaveSettings()
+        private void SaveSettings()
         {
             Settings settings = IoC.Get<Settings>();
 
+            settings.SaveObject(this);
             settings.SaveObject(IoC.Get<MainViewModel>());
-            settings.SaveObject(IoC.Get<SettingsViewModel>());
             settings.SaveObject(IoC.Get<EDIDViewModel>());
 
             settings.Save();
         }
 
-        private static void CacheViews()
+        private void CacheViews()
         {
             IoC.Set<WelcomeViewModel>(new WelcomeViewModel());
             IoC.Set<WelcomeView>(new WelcomeView());
             IoC.Set<AboutViewModel>(new AboutViewModel());
             IoC.Set<AboutView>(new AboutView());
-            IoC.Set<SettingsViewModel>(new SettingsViewModel());
-            IoC.Set<SettingsView>(new SettingsView());
             IoC.Set<FolderBrowserViewModel>(new FolderBrowserViewModel());
             IoC.Set<FolderBrowserView>(new FolderBrowserView());
             IoC.Set<EDIDViewModel>(new EDIDViewModel());
             IoC.Set<EDIDView>(new EDIDView());
-            IoC.Set<ProgrammerViewModel>(new ProgrammerViewModel());
-            IoC.Set<ProgrammerView>(new ProgrammerView());
-            IoC.Set<WriterViewModel>(new WriterViewModel());
-            IoC.Set<WriterView>(new WriterView());
 
-            IoC.Set<PromptTestView>(new PromptTestView());
+            IoC.Set<PromptProgrammerView>(new PromptProgrammerView());
+            IoC.Set<PromptScreenView>(new PromptScreenView());
+            IoC.Set<PromptLibraryView>(new PromptLibraryView());
+        }
+
+        public void ApplyTheme()
+        {
+            Elysium.Manager.Apply(this, Theme, AccentBrush, ContrastBrush);
         }
     }
 }

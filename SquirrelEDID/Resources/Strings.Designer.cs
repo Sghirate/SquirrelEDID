@@ -88,7 +88,286 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Library.
+        ///   Looks up a localized string similar to Blank to black:.
+        /// </summary>
+        internal static string EDID_BlankToBlack {
+            get {
+                return ResourceManager.GetString("EDID_BlankToBlack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blank-to-black setup (pedestal) expect..
+        /// </summary>
+        internal static string EDID_BlankToBlackHelp {
+            get {
+                return ResourceManager.GetString("EDID_BlankToBlackHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue:.
+        /// </summary>
+        internal static string EDID_Blue {
+            get {
+                return ResourceManager.GetString("EDID_Blue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue chromacity coordinates..
+        /// </summary>
+        internal static string EDID_BlueHelp {
+            get {
+                return ResourceManager.GetString("EDID_BlueHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue X coordinate..
+        /// </summary>
+        internal static string EDID_BlueXHelp {
+            get {
+                return ResourceManager.GetString("EDID_BlueXHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blue Y coordinate..
+        /// </summary>
+        internal static string EDID_BlueYHelp {
+            get {
+                return ResourceManager.GetString("EDID_BlueYHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color settings:.
+        /// </summary>
+        internal static string EDID_ColorSettings {
+            get {
+                return ResourceManager.GetString("EDID_ColorSettings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chromacity coordinates per color..
+        /// </summary>
+        internal static string EDID_ColorSettingsHelp {
+            get {
+                return ResourceManager.GetString("EDID_ColorSettingsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Composite sync:.
+        /// </summary>
+        internal static string EDID_CompositeSync {
+            get {
+                return ResourceManager.GetString("EDID_CompositeSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Composite sync (on HSync) support..
+        /// </summary>
+        internal static string EDID_CompositeSyncHelp {
+            get {
+                return ResourceManager.GetString("EDID_CompositeSyncHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom timings:.
+        /// </summary>
+        internal static string EDID_CustomTimings {
+            get {
+                return ResourceManager.GetString("EDID_CustomTimings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aspect ratio (used to calculate horizontal pixel resolution)..
+        /// </summary>
+        internal static string EDID_CustomTimings_AspectRatioHelp {
+            get {
+                return ResourceManager.GetString("EDID_CustomTimings_AspectRatioHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Timing mode in use..
+        /// </summary>
+        internal static string EDID_CustomTimings_UsedHelp {
+            get {
+                return ResourceManager.GetString("EDID_CustomTimings_UsedHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Vertical frequency (min: 60!)..
+        /// </summary>
+        internal static string EDID_CustomTimings_VerticalFrequencyHelp {
+            get {
+                return ResourceManager.GetString("EDID_CustomTimings_VerticalFrequencyHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Horizontal pixel resolution..
+        /// </summary>
+        internal static string EDID_CustomTimings_XResolutionHelp {
+            get {
+                return ResourceManager.GetString("EDID_CustomTimings_XResolutionHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Additional standard timing modes..
+        /// </summary>
+        internal static string EDID_CustomTimingsHelp {
+            get {
+                return ResourceManager.GetString("EDID_CustomTimingsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DFP Compatible:.
+        /// </summary>
+        internal static string EDID_DFPCompatible {
+            get {
+                return ResourceManager.GetString("EDID_DFPCompatible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signal compatibilaty with VESA DFP Transition-minimized differential signaling..
+        /// </summary>
+        internal static string EDID_DFPCompatibleHelp {
+            get {
+                return ResourceManager.GetString("EDID_DFPCompatibleHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital:.
+        /// </summary>
+        internal static string EDID_Digital {
+            get {
+                return ResourceManager.GetString("EDID_Digital", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digital (HDMI/DVI/...) or Analog (VGA/...) Input.
+        /// </summary>
+        internal static string EDID_DigitalHelp {
+            get {
+                return ResourceManager.GetString("EDID_DigitalHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display type:.
+        /// </summary>
+        internal static string EDID_DisplayType {
+            get {
+                return ResourceManager.GetString("EDID_DisplayType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display type..
+        /// </summary>
+        internal static string EDID_DisplayTypeHelp {
+            get {
+                return ResourceManager.GetString("EDID_DisplayTypeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DPMS active-off:.
+        /// </summary>
+        internal static string EDID_DPMSActiveOff {
+            get {
+                return ResourceManager.GetString("EDID_DPMSActiveOff", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Active-off support (&lt;8W power consumption, ~20s recovery time)..
+        /// </summary>
+        internal static string EDID_DPMSActiveOffHelp {
+            get {
+                return ResourceManager.GetString("EDID_DPMSActiveOffHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DPMS standby:.
+        /// </summary>
+        internal static string EDID_DPMSStandBy {
+            get {
+                return ResourceManager.GetString("EDID_DPMSStandBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stand-by support (&lt;80% power consumption, ~1s recovery time)..
+        /// </summary>
+        internal static string EDID_DPMSStandByHelp {
+            get {
+                return ResourceManager.GetString("EDID_DPMSStandByHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DPMS suspend:.
+        /// </summary>
+        internal static string EDID_DPMSSuspend {
+            get {
+                return ResourceManager.GetString("EDID_DPMSSuspend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Suspend support (&lt;30W power consumption, ~5s recovery time)..
+        /// </summary>
+        internal static string EDID_DPMSSuspendHelp {
+            get {
+                return ResourceManager.GetString("EDID_DPMSSuspendHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Established timings:.
+        /// </summary>
+        internal static string EDID_EstablishedTimings {
+            get {
+                return ResourceManager.GetString("EDID_EstablishedTimings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported common timing modes..
+        /// </summary>
+        internal static string EDID_EstablishedTimingsHelp {
+            get {
+                return ResourceManager.GetString("EDID_EstablishedTimingsHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load EDID.
+        /// </summary>
+        internal static string EDID_FromFooter {
+            get {
+                return ResourceManager.GetString("EDID_FromFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filesystem.
         /// </summary>
         internal static string EDID_FromLibrary {
             get {
@@ -97,7 +376,7 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Load EDID record from library.
+        ///   Looks up a localized string similar to Load EDID from file..
         /// </summary>
         internal static string EDID_FromLibraryHelp {
             get {
@@ -142,6 +421,501 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Display gamma:.
+        /// </summary>
+        internal static string EDID_Gamma {
+            get {
+                return ResourceManager.GetString("EDID_Gamma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display gamma..
+        /// </summary>
+        internal static string EDID_GammaHelp {
+            get {
+                return ResourceManager.GetString("EDID_GammaHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green:.
+        /// </summary>
+        internal static string EDID_Green {
+            get {
+                return ResourceManager.GetString("EDID_Green", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green chromacity coordinates..
+        /// </summary>
+        internal static string EDID_GreenHelp {
+            get {
+                return ResourceManager.GetString("EDID_GreenHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green X coordinate..
+        /// </summary>
+        internal static string EDID_GreenXHelp {
+            get {
+                return ResourceManager.GetString("EDID_GreenXHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Green Y coordinate..
+        /// </summary>
+        internal static string EDID_GreenYHelp {
+            get {
+                return ResourceManager.GetString("EDID_GreenYHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to GTF supported:.
+        /// </summary>
+        internal static string EDID_GTFSupport {
+            get {
+                return ResourceManager.GetString("EDID_GTFSupport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generalized timing formula support..
+        /// </summary>
+        internal static string EDID_GTFSupportHelp {
+            get {
+                return ResourceManager.GetString("EDID_GTFSupportHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manufacturer:.
+        /// </summary>
+        internal static string EDID_Manufaturer {
+            get {
+                return ResourceManager.GetString("EDID_Manufaturer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Three letter code, identifying the manufacturer of the display..
+        /// </summary>
+        internal static string EDID_ManufaturerHelp {
+            get {
+                return ResourceManager.GetString("EDID_ManufaturerHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximal width:.
+        /// </summary>
+        internal static string EDID_MaxHorizontal {
+            get {
+                return ResourceManager.GetString("EDID_MaxHorizontal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum horizontal image size, in centimetres. (if 0, projector)..
+        /// </summary>
+        internal static string EDID_MaxHorizontalHelp {
+            get {
+                return ResourceManager.GetString("EDID_MaxHorizontalHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximal height:.
+        /// </summary>
+        internal static string EDID_MaxVertical {
+            get {
+                return ResourceManager.GetString("EDID_MaxVertical", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum vertical image size, in centimetres. (if 0, projector)..
+        /// </summary>
+        internal static string EDID_MaxVerticalHelp {
+            get {
+                return ResourceManager.GetString("EDID_MaxVerticalHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred timing defined:.
+        /// </summary>
+        internal static string EDID_PreferredTimingDefined {
+            get {
+                return ResourceManager.GetString("EDID_PreferredTimingDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred mode specified in descriptor block 1?.
+        /// </summary>
+        internal static string EDID_PreferredTimingDefinedHelp {
+            get {
+                return ResourceManager.GetString("EDID_PreferredTimingDefinedHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product Code:.
+        /// </summary>
+        internal static string EDID_ProductCode {
+            get {
+                return ResourceManager.GetString("EDID_ProductCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arbitrary number assigned by manufacturer..
+        /// </summary>
+        internal static string EDID_ProductCodeHelp {
+            get {
+                return ResourceManager.GetString("EDID_ProductCodeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red:.
+        /// </summary>
+        internal static string EDID_Red {
+            get {
+                return ResourceManager.GetString("EDID_Red", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red chromacity coordinates..
+        /// </summary>
+        internal static string EDID_RedHelp {
+            get {
+                return ResourceManager.GetString("EDID_RedHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red X coordinate..
+        /// </summary>
+        internal static string EDID_RedXHelp {
+            get {
+                return ResourceManager.GetString("EDID_RedXHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Red Y coordinate..
+        /// </summary>
+        internal static string EDID_RedYHelp {
+            get {
+                return ResourceManager.GetString("EDID_RedYHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revision.
+        /// </summary>
+        internal static string EDID_RevisionHelp {
+            get {
+                return ResourceManager.GetString("EDID_RevisionHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seperate sync:.
+        /// </summary>
+        internal static string EDID_SeperateSync {
+            get {
+                return ResourceManager.GetString("EDID_SeperateSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Seperate sync support..
+        /// </summary>
+        internal static string EDID_SeperateSyncHelp {
+            get {
+                return ResourceManager.GetString("EDID_SeperateSyncHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Serial Code:.
+        /// </summary>
+        internal static string EDID_SerialCode {
+            get {
+                return ResourceManager.GetString("EDID_SerialCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Arbitrary number assigned by manufacturer..
+        /// </summary>
+        internal static string EDID_SerialCodeHelp {
+            get {
+                return ResourceManager.GetString("EDID_SerialCodeHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard sRGB:.
+        /// </summary>
+        internal static string EDID_StandardSRGB {
+            get {
+                return ResourceManager.GetString("EDID_StandardSRGB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard sRGB color space..
+        /// </summary>
+        internal static string EDID_StandardSRGBHelp {
+            get {
+                return ResourceManager.GetString("EDID_StandardSRGBHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported Features:.
+        /// </summary>
+        internal static string EDID_SupportedFeatures {
+            get {
+                return ResourceManager.GetString("EDID_SupportedFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Supported features and power management options..
+        /// </summary>
+        internal static string EDID_SupportedFeaturesHelp {
+            get {
+                return ResourceManager.GetString("EDID_SupportedFeaturesHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync on green:.
+        /// </summary>
+        internal static string EDID_SyncOnGreen {
+            get {
+                return ResourceManager.GetString("EDID_SyncOnGreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sync on green support..
+        /// </summary>
+        internal static string EDID_SyncOnGreenHelp {
+            get {
+                return ResourceManager.GetString("EDID_SyncOnGreenHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Files.
+        /// </summary>
+        internal static string EDID_ToFiles {
+            get {
+                return ResourceManager.GetString("EDID_ToFiles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate multiple EDID files with varying serial strings..
+        /// </summary>
+        internal static string EDID_ToFilesHelp {
+            get {
+                return ResourceManager.GetString("EDID_ToFilesHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write EDID.
+        /// </summary>
+        internal static string EDID_ToFooter {
+            get {
+                return ResourceManager.GetString("EDID_ToFooter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filesystem.
+        /// </summary>
+        internal static string EDID_ToLibrary {
+            get {
+                return ResourceManager.GetString("EDID_ToLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save EDID to a file..
+        /// </summary>
+        internal static string EDID_ToLibraryHelp {
+            get {
+                return ResourceManager.GetString("EDID_ToLibraryHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Programmer.
+        /// </summary>
+        internal static string EDID_ToProgrammer {
+            get {
+                return ResourceManager.GetString("EDID_ToProgrammer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write (one or multiple) EDID onto a device via eyeVis DDC Programmer..
+        /// </summary>
+        internal static string EDID_ToProgrammerHelp {
+            get {
+                return ResourceManager.GetString("EDID_ToProgrammerHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screen.
+        /// </summary>
+        internal static string EDID_ToScreen {
+            get {
+                return ResourceManager.GetString("EDID_ToScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use EDID to override a screen&apos;s system EDID..
+        /// </summary>
+        internal static string EDID_ToScreenHelp {
+            get {
+                return ResourceManager.GetString("EDID_ToScreenHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EDID Version.
+        /// </summary>
+        internal static string EDID_Version {
+            get {
+                return ResourceManager.GetString("EDID_Version", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        internal static string EDID_VersionHelp {
+            get {
+                return ResourceManager.GetString("EDID_VersionHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VSync pule:.
+        /// </summary>
+        internal static string EDID_VSyncPulse {
+            get {
+                return ResourceManager.GetString("EDID_VSyncPulse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VSync pulse must be serrated when composite or sync-on-green is used..
+        /// </summary>
+        internal static string EDID_VSyncPulseHelp {
+            get {
+                return ResourceManager.GetString("EDID_VSyncPulseHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week of Manufacture:.
+        /// </summary>
+        internal static string EDID_WeekOfManufature {
+            get {
+                return ResourceManager.GetString("EDID_WeekOfManufature", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week of the year..
+        /// </summary>
+        internal static string EDID_WeekOfManufatureHelp {
+            get {
+                return ResourceManager.GetString("EDID_WeekOfManufatureHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White:.
+        /// </summary>
+        internal static string EDID_White {
+            get {
+                return ResourceManager.GetString("EDID_White", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White &amp; Sync Levels:.
+        /// </summary>
+        internal static string EDID_WhiteAndSync {
+            get {
+                return ResourceManager.GetString("EDID_WhiteAndSync", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Video white and sync levels relative to blank..
+        /// </summary>
+        internal static string EDID_WhiteAndSyncHelp {
+            get {
+                return ResourceManager.GetString("EDID_WhiteAndSyncHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White chromacity coordinates..
+        /// </summary>
+        internal static string EDID_WhiteHelp {
+            get {
+                return ResourceManager.GetString("EDID_WhiteHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White X coordinate..
+        /// </summary>
+        internal static string EDID_WhiteXHelp {
+            get {
+                return ResourceManager.GetString("EDID_WhiteXHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to White Y coordinate..
+        /// </summary>
+        internal static string EDID_WhiteYHelp {
+            get {
+                return ResourceManager.GetString("EDID_WhiteYHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year of manufacture..
+        /// </summary>
+        internal static string EDID_YearOfManufactureHelp {
+            get {
+                return ResourceManager.GetString("EDID_YearOfManufactureHelp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empty.
         /// </summary>
         internal static string FolderBrowser_Empty {
@@ -156,6 +930,87 @@ namespace SquirrelEDID.Resources {
         internal static string FolderBrowser_NewFolder {
             get {
                 return ResourceManager.GetString("FolderBrowser_NewFolder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must only contain letters. .
+        /// </summary>
+        internal static string INV_Characters {
+            get {
+                return ResourceManager.GetString("INV_Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must not be empty. .
+        /// </summary>
+        internal static string INV_Empty {
+            get {
+                return ResourceManager.GetString("INV_Empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must only contain hexadezimal numbers. .
+        /// </summary>
+        internal static string INV_Hex {
+            get {
+                return ResourceManager.GetString("INV_Hex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be shorter than {0} characters. .
+        /// </summary>
+        internal static string INV_MaxLength {
+            get {
+                return ResourceManager.GetString("INV_MaxLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be smaller than {0}. .
+        /// </summary>
+        internal static string INV_MaxValue {
+            get {
+                return ResourceManager.GetString("INV_MaxValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be longer than {0} characters. .
+        /// </summary>
+        internal static string INV_MinLength {
+            get {
+                return ResourceManager.GetString("INV_MinLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be bigger than {0}. .
+        /// </summary>
+        internal static string INV_MinValue {
+            get {
+                return ResourceManager.GetString("INV_MinValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value must be of type {0}. .
+        /// </summary>
+        internal static string INV_Type {
+            get {
+                return ResourceManager.GetString("INV_Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        internal static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -349,6 +1204,51 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Theme.
+        /// </summary>
+        internal static string Theme {
+            get {
+                return ResourceManager.GetString("Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Accent Color.
+        /// </summary>
+        internal static string Theme_AccentColor {
+            get {
+                return ResourceManager.GetString("Theme_AccentColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Contrast Color.
+        /// </summary>
+        internal static string Theme_ContrastColor {
+            get {
+                return ResourceManager.GetString("Theme_ContrastColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dark.
+        /// </summary>
+        internal static string Theme_Dark {
+            get {
+                return ResourceManager.GetString("Theme_Dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Light.
+        /// </summary>
+        internal static string Theme_Light {
+            get {
+                return ResourceManager.GetString("Theme_Light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About....
         /// </summary>
         internal static string Welcome_About {
@@ -387,6 +1287,15 @@ namespace SquirrelEDID.Resources {
         internal static string Welcome_Part2 {
             get {
                 return ResourceManager.GetString("Welcome_Part2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        internal static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

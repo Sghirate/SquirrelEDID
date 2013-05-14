@@ -196,7 +196,6 @@ namespace SquirrelEDID.ViewModel
         
         private void HandleCancelExecuted(object obj)
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Settings);
         }
 
         private bool HandleCancelCanExecute(object obj)
@@ -206,7 +205,6 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleAcceptExecuted(object obj)
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Settings);
         }
 
         private bool HandleAcceptCanExecute(object obj)

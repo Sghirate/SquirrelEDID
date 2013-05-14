@@ -34,17 +34,27 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>SquirrelEDID.Program</StartupObject>
+    <StartupObject>
+    </StartupObject>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>Resources\Images\SquirrelEDID.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Elysium, Version=2.0.976.0, Culture=neutral, PublicKeyToken=afa220db249e5b15, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Windows.Design.Extensibility, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Elysium, Version=2.0.976.0, Culture=neutral, PublicKeyToken=afa220db249e5b15, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\Elysium.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Windows.Shell, Version=3.5.41019.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\Microsoft.Windows.Shell.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ThirdParty\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -56,12 +66,6 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
-    <Reference Include="Xceed.Wpf.DataGrid">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.1.9.0\lib\net40\Xceed.Wpf.DataGrid.dll</HintPath>
-    </Reference>
-    <Reference Include="Xceed.Wpf.Toolkit">
-      <HintPath>..\packages\Extended.Wpf.Toolkit.1.9.0\lib\net40\Xceed.Wpf.Toolkit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -77,20 +81,23 @@
     <Compile Include="Model\EDID_StringDescriptor.cs" />
     <Compile Include="Model\FolderBrowserModel.cs" />
     <Compile Include="Model\iowkit.cs" />
-    <Compile Include="Model\LibraryFile.cs" />
     <Compile Include="Model\Programmer.cs" />
     <Compile Include="Model\Win32\Display.cs" />
     <Compile Include="Model\Win32\NativeMethods.cs" />
     <Compile Include="Model\Win32\NativeObjects.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Resources\Strings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\Behaviors\IconBehavior.cs" />
     <Compile Include="Utilities\Converters\ByteArraySegmentationConverter.cs" />
+    <Compile Include="Utilities\Converters\ByteToHexStringConverter.cs" />
     <Compile Include="Utilities\Converters\DoubleToIntConverter.cs" />
+    <Compile Include="Utilities\Converters\EstablishedTimingConverter.cs" />
     <Compile Include="Utilities\Converters\FSItemToIconConverter.cs" />
+    <Compile Include="Utilities\Converters\StringToSolidColorBrushConverter.cs" />
+    <Compile Include="Utilities\Converters\StringToThemeConverter.cs" />
     <Compile Include="Utilities\EventToCommand.cs" />
     <Compile Include="Utilities\Extensions\BitArrayExtension.cs" />
     <Compile Include="Utilities\Extensions\ByteArrayExtension.cs" />
@@ -101,18 +108,18 @@
     <Compile Include="Utilities\Messaging\Messenger.cs" />
     <Compile Include="Utilities\RelayCommand.cs" />
     <Compile Include="Utilities\Settings.cs" />
+    <Compile Include="Utilities\TextBoxBindingHelper.cs" />
     <Compile Include="Utilities\ToolTipHelper.cs" />
+    <Compile Include="Utilities\ValidationHelper.cs" />
     <Compile Include="ViewModel\AboutViewModel.cs" />
     <Compile Include="ViewModel\BaseViewModel.cs" />
     <Compile Include="ViewModel\EDIDViewModel.cs" />
     <Compile Include="ViewModel\FolderBrowserViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\ProgrammerViewModel.cs" />
+    <Compile Include="ViewModel\PromptLibraryViewModel.cs" />
     <Compile Include="ViewModel\Prompts\PromptProgrammerViewModel.cs" />
     <Compile Include="ViewModel\Prompts\PromptScreenViewModel.cs" />
-    <Compile Include="ViewModel\SettingsViewModel.cs" />
     <Compile Include="ViewModel\WelcomeViewModel.cs" />
-    <Compile Include="ViewModel\WriterViewModel.cs" />
     <Compile Include="View\AboutView.xaml.cs">
       <DependentUpon>AboutView.xaml</DependentUpon>
     </Compile>
@@ -123,8 +130,8 @@
     <Compile Include="View\FolderBrowserView.xaml.cs">
       <DependentUpon>FolderBrowserView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\ProgrammerView.xaml.cs">
-      <DependentUpon>ProgrammerView.xaml</DependentUpon>
+    <Compile Include="View\Prompts\PromptLibraryView.xaml.cs">
+      <DependentUpon>PromptLibraryView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Prompts\PromptProgrammerView.xaml.cs">
       <DependentUpon>PromptProgrammerView.xaml</DependentUpon>
@@ -132,17 +139,8 @@
     <Compile Include="View\Prompts\PromptScreenView.xaml.cs">
       <DependentUpon>PromptScreenView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Prompts\PromptTestView.xaml.cs">
-      <DependentUpon>PromptTestView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\SettingsView.xaml.cs">
-      <DependentUpon>SettingsView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\WelcomeView.xaml.cs">
       <DependentUpon>WelcomeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\WriterView.xaml.cs">
-      <DependentUpon>WriterView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -168,7 +166,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\ProgrammerView.xaml">
+    <Page Include="View\Prompts\PromptLibraryView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -180,19 +178,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Prompts\PromptTestView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\SettingsView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\WelcomeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\WriterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,7 +207,6 @@
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
@@ -232,25 +217,19 @@
     <None Include="iowkit.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <Resource Include="Resources\SquirrelEDID.ttf" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\CDRom.png" />
-    <Resource Include="Resources\Images\Database.png" />
     <Resource Include="Resources\Images\Drive.png" />
     <Resource Include="Resources\Images\Folder.png" />
     <Resource Include="Resources\Images\FSFolder.png" />
     <Resource Include="Resources\Images\Networked.png" />
-    <Resource Include="Resources\Images\Next.png" />
-    <Resource Include="Resources\Images\Prev.png" />
-    <Resource Include="Resources\Images\Programmer.png" />
-    <Resource Include="Resources\Images\Question.png" />
     <Resource Include="Resources\Images\RAM.png" />
     <Resource Include="Resources\Images\USB.png" />
     <Resource Include="Resources\Images\X.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\Images\Display.png" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!--<Target Name="AfterResolveReferences">
     <ItemGroup>

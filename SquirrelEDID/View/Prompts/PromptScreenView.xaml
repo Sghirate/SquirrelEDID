@@ -59,29 +59,6 @@
                     </Button>
                 </StackPanel>
             </Grid>
-            <!--<ItemsControl ItemsSource="{Binding Displays}">
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <Grid HorizontalAlignment="Stretch">
-                            <Grid.InputBindings>
-                                <MouseBinding Command="{Binding Source={StaticResource ioc}, Path=Repository[PromptScreenViewModel].AcceptCommand}" Gesture="LeftDoubleClick"/>
-                            </Grid.InputBindings>
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <TextBlock Grid.Row="0" Text="{Binding Description}" FontSize="20" FontWeight="Black"/>
-                            <TextBlock Grid.Row="1" FontSize="16" FontStyle="Italic" Margin="15,0,0,0">
-                            <Run Text="{Binding Name}"/>
-                            <Run Text=" ("/>
-                            <Run Text="{Binding Additional.ManufacturerID}"/>
-                            <Run Text="{Binding Additional.ProductCode}"/>
-                            <Run Text=")"/>
-                            </TextBlock>
-                        </Grid>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>-->
         </Border>
     </Grid>
 </UserControl>

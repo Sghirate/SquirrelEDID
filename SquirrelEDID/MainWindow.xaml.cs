@@ -4,6 +4,7 @@ using SquirrelEDID.View.Controls;
 using SquirrelEDID.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -23,6 +24,9 @@ namespace SquirrelEDID
     /// </summary>
     public partial class MainWindow : Elysium.Controls.Window
     {
+        private static string _win = Environment.GetFolderPath(Environment.SpecialFolder.Windows);
+        private static string _segoeUI = _win + "\\Fonts\\SegoeUI.ttf";
+        private static string _verdanta = _win + "\\Fonts\\Verdana.ttf";
         Prompts _cPrompt = Prompts.None;
         Queue<Prompts> _prompts = new Queue<Prompts>();
 
@@ -110,6 +114,15 @@ namespace SquirrelEDID
                 Left = (SystemParameters.VirtualScreenLeft + SystemParameters.VirtualScreenWidth) - Width;
             if (Top + Height > SystemParameters.VirtualScreenTop + SystemParameters.VirtualScreenHeight)
                 Top = (SystemParameters.VirtualScreenTop + SystemParameters.VirtualScreenHeight) - Height;
+        }
+
+        private void Glyph_Initialized(object sender, EventArgs e)
+        {
+            if (!(sender is Glyphs))
+                return;
+
+            Glyphs g = (Glyphs)sender;
+            g.FontUri = new Uri(File.Exists(_segoeUI) ? _segoeUI : _verdanta);
         }
     }
 }

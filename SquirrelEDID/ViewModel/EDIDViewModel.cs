@@ -7,12 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using SquirrelEDID.Utilities.Extensions;
+using System.Windows;
+using System.Windows.Controls;
+using SquirrelEDID.Model.Win32;
 
 namespace SquirrelEDID.ViewModel
 {
     public class EDIDViewModel : BaseViewModel
     {
+        private enum EDIDAwait
+        {
+            None,
+            ScreenSelectLoad,
+            ScreenSelectOverride
+        }
+
         #region Fields
+        private EDIDAwait _await = EDIDAwait.None;
         private EDID _edid; 
         #endregion
 
@@ -45,30 +56,14 @@ namespace SquirrelEDID.ViewModel
                 if (_edid == value)
                     return;
 
-                System.Diagnostics.Trace.WriteLine(value.Length);
                 _edid = value;
                 OnPropertyChanged("EDID");
+                CommandManager.InvalidateRequerySuggested();
             }
         } 
         #endregion
 
         #region Commands
-        private ICommand _acceptCommand;
-        public ICommand AcceptCommand
-        {
-            get
-            {
-                return _acceptCommand ?? (_acceptCommand = new RelayCommand(HandleAcceptExecuted, HandleAcceptCanExecute));
-            }
-        }
-        private ICommand _cancelCommand;
-        public ICommand CancelCommand
-        {
-            get
-            {
-                return _cancelCommand ?? (_cancelCommand = new RelayCommand(HandleCancelExecuted, HandleCancelCanExecute));
-            }
-        }
         private ICommand _fromLibraryCommand;
         public ICommand FromLibraryCommand
         {
@@ -93,19 +88,70 @@ namespace SquirrelEDID.ViewModel
                 return _fromProgrammerCommand ?? (_fromProgrammerCommand = new RelayCommand(HandleFromProgrammerExecuted, HandleFromProgrammerCanExecute));
             }
         }
+        private ICommand _toLibraryCommand;
+        public ICommand ToLibraryCommand
+        {
+            get
+            {
+                return _toLibraryCommand ?? (_toLibraryCommand = new RelayCommand(HandleToLibraryExecuted, HandleToLibraryCanExecute));
+            }
+        }
+        private ICommand _toFilesCommand;
+        public ICommand ToFilesCommand
+        {
+            get
+            {
+                return _toFilesCommand ?? (_toFilesCommand = new RelayCommand(HandleToFilesExecuted, HandleToFilesCanExecute));
+            }
+        }
+        private ICommand _toScreenCommand;
+        public ICommand ToScreenCommand
+        {
+            get
+            {
+                return _toScreenCommand ?? (_toScreenCommand = new RelayCommand(HandleToScreenExecuted, HandleToScreenCanExecute));
+            }
+        }
+        private ICommand _toProgrammerCommand;
+        public ICommand ToProgrammerCommand
+        {
+            get
+            {
+                return _toProgrammerCommand ?? (_toProgrammerCommand = new RelayCommand(HandleToProgrammerExecuted, HandleToProgrammerCanExecute));
+            }
+        }
         #endregion
 
         #region Constructors
         public EDIDViewModel()
         {
-            Messenger<EDID>.AddListener(edid => { if (edid != null) EDID = edid; System.Diagnostics.Trace.WriteLine("CALL"); });
+            Messenger<DisplayInfo>.AddListener(HandleDisplayInfo);
         } 
         #endregion
 
         #region Methods
+        private void HandleDisplayInfo(DisplayInfo di)
+        {
+            switch(_await)
+            {
+                case EDIDAwait.ScreenSelectLoad:
+                    if (di.Additional == null)
+                        break;
+
+                    EDID edid = (EDID)di.Additional;
+                    if (edid == null)
+                        break;
+
+                    EDID = edid;
+                    break;
+                case EDIDAwait.ScreenSelectOverride:
+                    break;
+            }
+        }
+
         private void HandleFromLibraryExecuted(object obj)
         {
-
+            //Messenger<ApplicationStates>.Invoke(ApplicationStates.)
         }
 
         private bool HandleFromLibraryCanExecute(object obj)
@@ -115,6 +161,7 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleFromScreenExecuted(object obj)
         {
+            _await = EDIDAwait.ScreenSelectLoad;
             Messenger<Prompts>.Invoke(Prompts.Screen);
         }
 
@@ -151,26 +198,45 @@ namespace SquirrelEDID.ViewModel
             return IoC.Get<Programmer>().WarriorAvailable;
         }
 
-        private void HandleAcceptExecuted(object obj)
+        private void HandleToLibraryExecuted(object obj)
         {
-            Messenger<EDID>.Invoke(_edid);
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Settings);
+
         }
 
-        private bool HandleAcceptCanExecute(object obj)
+        private bool HandleToLibraryCanExecute(object obj)
         {
-            return true;
+            return EDID != null;
         }
 
-        private void HandleCancelExecuted(object obj)
+        private void HandleToFilesExecuted(object obj)
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Settings);
+
         }
 
-        private bool HandleCancelCanExecute(object obj)
+        private bool HandleToFilesCanExecute(object obj)
         {
-            return true;
-        } 
+            return EDID != null;
+        }
+
+        private void HandleToScreenExecuted(object obj)
+        {
+            // INF OVERRIDE!
+        }
+
+        private bool HandleToScreenCanExecute(object obj)
+        {
+            return EDID != null;
+        }
+
+        private void HandleToProgrammerExecuted(object obj)
+        {
+
+        }
+
+        private bool HandleToProgrammerCanExecute(object obj)
+        {
+            return (EDID != null) && IoC.Get<Programmer>().WarriorAvailable;
+        }
         #endregion
     }
 }

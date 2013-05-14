@@ -245,7 +245,7 @@ namespace SquirrelEDID.Model
 
             try
             {
-                uint bytesRead = 0;
+                //uint bytesRead = 0;
                 byte[] buffer = new byte[] { 0x00, 0x00, b };
                 Functions.IowKitWrite(_device, 0, buffer, Len(buffer));
 

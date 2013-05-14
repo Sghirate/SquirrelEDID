@@ -1,5 +1,6 @@
 ﻿using SquirrelEDID.Resources;
 using System;
+using System.Collections.Generic;
 using System.Windows.Markup;
 
 namespace SquirrelEDID.Utilities
@@ -8,7 +9,12 @@ namespace SquirrelEDID.Utilities
     public class I18NExtension : MarkupExtension
     {
         #region Fields
+        private static HashSet<string> _missing = new HashSet<string>();
         string _key; 
+        #endregion
+
+        #region Properties
+        public static HashSet<string> Missing { get { return _missing; } }
         #endregion
 
         #region Constructors
@@ -24,7 +30,13 @@ namespace SquirrelEDID.Utilities
             if (string.IsNullOrEmpty(_key))
                 return "#";
 
-            return Strings.ResourceManager.GetString(_key) ?? ("#" + _key);
+            string str = Strings.ResourceManager.GetString(_key);
+            if (String.IsNullOrEmpty(str))
+            {
+                _missing.Add(_key);
+                str = "#" + _key;
+            }
+            return str;
         } 
         #endregion
     }

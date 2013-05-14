@@ -5,7 +5,8 @@ using System.Text;
 
 namespace SquirrelEDID.ViewModel
 {
-    public class ProgrammerViewModel : BaseViewModel
+    public class PromptLibraryViewModel : BaseViewModel
     {
+
     }
 }

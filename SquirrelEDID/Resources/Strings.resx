@@ -126,11 +126,47 @@
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="EDID_BlankToBlack" xml:space="preserve">
+    <value>Blank to black:</value>
+  </data>
+  <data name="EDID_Blue" xml:space="preserve">
+    <value>Blue:</value>
+  </data>
+  <data name="EDID_ColorSettings" xml:space="preserve">
+    <value>Color settings:</value>
+  </data>
+  <data name="EDID_CompositeSync" xml:space="preserve">
+    <value>Composite sync:</value>
+  </data>
+  <data name="EDID_CustomTimings" xml:space="preserve">
+    <value>Custom timings:</value>
+  </data>
+  <data name="EDID_DFPCompatible" xml:space="preserve">
+    <value>DFP Compatible:</value>
+  </data>
+  <data name="EDID_Digital" xml:space="preserve">
+    <value>Digital:</value>
+  </data>
+  <data name="EDID_DisplayType" xml:space="preserve">
+    <value>Display type:</value>
+  </data>
+  <data name="EDID_DPMSActiveOff" xml:space="preserve">
+    <value>DPMS active-off:</value>
+  </data>
+  <data name="EDID_DPMSStandBy" xml:space="preserve">
+    <value>DPMS standby:</value>
+  </data>
+  <data name="EDID_DPMSSuspend" xml:space="preserve">
+    <value>DPMS suspend:</value>
+  </data>
+  <data name="EDID_EstablishedTimings" xml:space="preserve">
+    <value>Established timings:</value>
+  </data>
   <data name="EDID_FromLibrary" xml:space="preserve">
-    <value>Library</value>
+    <value>Filesystem</value>
   </data>
   <data name="EDID_FromLibraryHelp" xml:space="preserve">
-    <value>Load EDID record from library</value>
+    <value>Load EDID from file.</value>
   </data>
   <data name="EDID_FromProgrammer" xml:space="preserve">
     <value>Programmer</value>
@@ -144,11 +180,107 @@
   <data name="EDID_FromScreenHelp" xml:space="preserve">
     <value>Load EDID record from an attached monitor</value>
   </data>
+  <data name="EDID_Gamma" xml:space="preserve">
+    <value>Display gamma:</value>
+  </data>
+  <data name="EDID_Green" xml:space="preserve">
+    <value>Green:</value>
+  </data>
+  <data name="EDID_GTFSupport" xml:space="preserve">
+    <value>GTF supported:</value>
+  </data>
+  <data name="EDID_Manufaturer" xml:space="preserve">
+    <value>Manufacturer:</value>
+  </data>
+  <data name="EDID_ManufaturerHelp" xml:space="preserve">
+    <value>Three letter code, identifying the manufacturer of the display.</value>
+  </data>
+  <data name="EDID_MaxHorizontal" xml:space="preserve">
+    <value>Maximal width:</value>
+  </data>
+  <data name="EDID_MaxVertical" xml:space="preserve">
+    <value>Maximal height:</value>
+  </data>
+  <data name="EDID_PreferredTimingDefined" xml:space="preserve">
+    <value>Preferred timing defined:</value>
+  </data>
+  <data name="EDID_ProductCode" xml:space="preserve">
+    <value>Product Code:</value>
+  </data>
+  <data name="EDID_ProductCodeHelp" xml:space="preserve">
+    <value>Arbitrary number assigned by manufacturer.</value>
+  </data>
+  <data name="EDID_Red" xml:space="preserve">
+    <value>Red:</value>
+  </data>
+  <data name="EDID_SeperateSync" xml:space="preserve">
+    <value>Seperate sync:</value>
+  </data>
+  <data name="EDID_SerialCode" xml:space="preserve">
+    <value>Serial Code:</value>
+  </data>
+  <data name="EDID_SerialCodeHelp" xml:space="preserve">
+    <value>Arbitrary number assigned by manufacturer.</value>
+  </data>
+  <data name="EDID_StandardSRGB" xml:space="preserve">
+    <value>Standard sRGB:</value>
+  </data>
+  <data name="EDID_SupportedFeatures" xml:space="preserve">
+    <value>Supported Features:</value>
+  </data>
+  <data name="EDID_SyncOnGreen" xml:space="preserve">
+    <value>Sync on green:</value>
+  </data>
+  <data name="EDID_Version" xml:space="preserve">
+    <value>EDID Version</value>
+  </data>
+  <data name="EDID_VSyncPulse" xml:space="preserve">
+    <value>VSync pule:</value>
+  </data>
+  <data name="EDID_WeekOfManufature" xml:space="preserve">
+    <value>Week of Manufacture:</value>
+  </data>
+  <data name="EDID_WeekOfManufatureHelp" xml:space="preserve">
+    <value>Week of the year.</value>
+  </data>
+  <data name="EDID_White" xml:space="preserve">
+    <value>White:</value>
+  </data>
+  <data name="EDID_WhiteAndSync" xml:space="preserve">
+    <value>White &amp; Sync Levels:</value>
+  </data>
+  <data name="EDID_YearOfManufactureHelp" xml:space="preserve">
+    <value>Year of manufacture.</value>
+  </data>
   <data name="FolderBrowser_Empty" xml:space="preserve">
     <value>Empty</value>
   </data>
   <data name="FolderBrowser_NewFolder" xml:space="preserve">
     <value>New Folder</value>
+  </data>
+  <data name="INV_Characters" xml:space="preserve">
+    <value>Value must only contain letters. </value>
+  </data>
+  <data name="INV_Empty" xml:space="preserve">
+    <value>Value must not be empty. </value>
+  </data>
+  <data name="INV_MaxLength" xml:space="preserve">
+    <value>Value must be shorter than {0} characters. </value>
+  </data>
+  <data name="INV_MaxValue" xml:space="preserve">
+    <value>Value must be smaller than {0}. </value>
+  </data>
+  <data name="INV_MinLength" xml:space="preserve">
+    <value>Value must be longer than {0} characters. </value>
+  </data>
+  <data name="INV_MinValue" xml:space="preserve">
+    <value>Value must be bigger than {0}. </value>
+  </data>
+  <data name="INV_Type" xml:space="preserve">
+    <value>Value must be of type {0}. </value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
   </data>
   <data name="Serrings_SerialStartHelp" xml:space="preserve">
     <value>Start value for generated serial numbers</value>
@@ -213,6 +345,21 @@
   <data name="Settings_SystemHelp" xml:space="preserve">
     <value>Load EDID record from an attached device</value>
   </data>
+  <data name="Theme" xml:space="preserve">
+    <value>Theme</value>
+  </data>
+  <data name="Theme_AccentColor" xml:space="preserve">
+    <value>Accent Color</value>
+  </data>
+  <data name="Theme_ContrastColor" xml:space="preserve">
+    <value>Contrast Color</value>
+  </data>
+  <data name="Theme_Dark" xml:space="preserve">
+    <value>Dark</value>
+  </data>
+  <data name="Theme_Light" xml:space="preserve">
+    <value>Light</value>
+  </data>
   <data name="Welcome_About" xml:space="preserve">
     <value>About...</value>
   </data>
@@ -230,5 +377,161 @@
 * Generate EDID sets with varying serial numbers, from a single template EDID.
 * Write EDIDs using an eyeVis DDC Programmer.
 * Override an EDID with your very own creation.</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="EDID_BlankToBlackHelp" xml:space="preserve">
+    <value>Blank-to-black setup (pedestal) expect.</value>
+  </data>
+  <data name="EDID_BlueHelp" xml:space="preserve">
+    <value>Blue chromacity coordinates.</value>
+  </data>
+  <data name="EDID_BlueXHelp" xml:space="preserve">
+    <value>Blue X coordinate.</value>
+  </data>
+  <data name="EDID_BlueYHelp" xml:space="preserve">
+    <value>Blue Y coordinate.</value>
+  </data>
+  <data name="EDID_ColorSettingsHelp" xml:space="preserve">
+    <value>Chromacity coordinates per color.</value>
+  </data>
+  <data name="EDID_CompositeSyncHelp" xml:space="preserve">
+    <value>Composite sync (on HSync) support.</value>
+  </data>
+  <data name="EDID_CustomTimingsHelp" xml:space="preserve">
+    <value>Additional standard timing modes.</value>
+  </data>
+  <data name="EDID_CustomTimings_AspectRatioHelp" xml:space="preserve">
+    <value>Aspect ratio (used to calculate horizontal pixel resolution).</value>
+  </data>
+  <data name="EDID_CustomTimings_UsedHelp" xml:space="preserve">
+    <value>Timing mode in use.</value>
+  </data>
+  <data name="EDID_CustomTimings_VerticalFrequencyHelp" xml:space="preserve">
+    <value>Vertical frequency (min: 60!).</value>
+  </data>
+  <data name="EDID_CustomTimings_XResolutionHelp" xml:space="preserve">
+    <value>Horizontal pixel resolution.</value>
+  </data>
+  <data name="EDID_DFPCompatibleHelp" xml:space="preserve">
+    <value>Signal compatibilaty with VESA DFP Transition-minimized differential signaling.</value>
+  </data>
+  <data name="EDID_DigitalHelp" xml:space="preserve">
+    <value>Digital (HDMI/DVI/...) or Analog (VGA/...) Input</value>
+  </data>
+  <data name="EDID_DisplayTypeHelp" xml:space="preserve">
+    <value>Display type.</value>
+  </data>
+  <data name="EDID_DPMSActiveOffHelp" xml:space="preserve">
+    <value>Active-off support (&lt;8W power consumption, ~20s recovery time).</value>
+  </data>
+  <data name="EDID_DPMSStandByHelp" xml:space="preserve">
+    <value>Stand-by support (&lt;80% power consumption, ~1s recovery time).</value>
+  </data>
+  <data name="EDID_DPMSSuspendHelp" xml:space="preserve">
+    <value>Suspend support (&lt;30W power consumption, ~5s recovery time).</value>
+  </data>
+  <data name="EDID_EstablishedTimingsHelp" xml:space="preserve">
+    <value>Supported common timing modes.</value>
+  </data>
+  <data name="EDID_GammaHelp" xml:space="preserve">
+    <value>Display gamma.</value>
+  </data>
+  <data name="EDID_GreenHelp" xml:space="preserve">
+    <value>Green chromacity coordinates.</value>
+  </data>
+  <data name="EDID_GreenXHelp" xml:space="preserve">
+    <value>Green X coordinate.</value>
+  </data>
+  <data name="EDID_GreenYHelp" xml:space="preserve">
+    <value>Green Y coordinate.</value>
+  </data>
+  <data name="EDID_GTFSupportHelp" xml:space="preserve">
+    <value>Generalized timing formula support.</value>
+  </data>
+  <data name="EDID_MaxHorizontalHelp" xml:space="preserve">
+    <value>Maximum horizontal image size, in centimetres. (if 0, projector).</value>
+  </data>
+  <data name="EDID_MaxVerticalHelp" xml:space="preserve">
+    <value>Maximum vertical image size, in centimetres. (if 0, projector).</value>
+  </data>
+  <data name="EDID_PreferredTimingDefinedHelp" xml:space="preserve">
+    <value>Preferred mode specified in descriptor block 1?</value>
+  </data>
+  <data name="EDID_RedHelp" xml:space="preserve">
+    <value>Red chromacity coordinates.</value>
+  </data>
+  <data name="EDID_RedXHelp" xml:space="preserve">
+    <value>Red X coordinate.</value>
+  </data>
+  <data name="EDID_RedYHelp" xml:space="preserve">
+    <value>Red Y coordinate.</value>
+  </data>
+  <data name="EDID_RevisionHelp" xml:space="preserve">
+    <value>Revision</value>
+  </data>
+  <data name="EDID_SeperateSyncHelp" xml:space="preserve">
+    <value>Seperate sync support.</value>
+  </data>
+  <data name="EDID_StandardSRGBHelp" xml:space="preserve">
+    <value>Standard sRGB color space.</value>
+  </data>
+  <data name="EDID_SupportedFeaturesHelp" xml:space="preserve">
+    <value>Supported features and power management options.</value>
+  </data>
+  <data name="EDID_SyncOnGreenHelp" xml:space="preserve">
+    <value>Sync on green support.</value>
+  </data>
+  <data name="EDID_VersionHelp" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="EDID_VSyncPulseHelp" xml:space="preserve">
+    <value>VSync pulse must be serrated when composite or sync-on-green is used.</value>
+  </data>
+  <data name="EDID_WhiteAndSyncHelp" xml:space="preserve">
+    <value>Video white and sync levels relative to blank.</value>
+  </data>
+  <data name="EDID_WhiteHelp" xml:space="preserve">
+    <value>White chromacity coordinates.</value>
+  </data>
+  <data name="EDID_WhiteXHelp" xml:space="preserve">
+    <value>White X coordinate.</value>
+  </data>
+  <data name="EDID_WhiteYHelp" xml:space="preserve">
+    <value>White Y coordinate.</value>
+  </data>
+  <data name="INV_Hex" xml:space="preserve">
+    <value>Value must only contain hexadezimal numbers. </value>
+  </data>
+  <data name="EDID_FromFooter" xml:space="preserve">
+    <value>Load EDID</value>
+  </data>
+  <data name="EDID_ToFiles" xml:space="preserve">
+    <value>Files</value>
+  </data>
+  <data name="EDID_ToFilesHelp" xml:space="preserve">
+    <value>Generate multiple EDID files with varying serial strings.</value>
+  </data>
+  <data name="EDID_ToFooter" xml:space="preserve">
+    <value>Write EDID</value>
+  </data>
+  <data name="EDID_ToLibrary" xml:space="preserve">
+    <value>Filesystem</value>
+  </data>
+  <data name="EDID_ToLibraryHelp" xml:space="preserve">
+    <value>Save EDID to a file.</value>
+  </data>
+  <data name="EDID_ToProgrammer" xml:space="preserve">
+    <value>Programmer</value>
+  </data>
+  <data name="EDID_ToProgrammerHelp" xml:space="preserve">
+    <value>Write (one or multiple) EDID onto a device via eyeVis DDC Programmer.</value>
+  </data>
+  <data name="EDID_ToScreen" xml:space="preserve">
+    <value>Screen</value>
+  </data>
+  <data name="EDID_ToScreenHelp" xml:space="preserve">
+    <value>Use EDID to override a screen's system EDID.</value>
   </data>
 </root>

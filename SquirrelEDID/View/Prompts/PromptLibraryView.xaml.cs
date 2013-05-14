@@ -1,5 +1,4 @@
-﻿using SquirrelEDID.Utilities.Messaging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,18 +15,13 @@ using System.Windows.Shapes;
 namespace SquirrelEDID.View
 {
     /// <summary>
-    /// Interaction logic for PromptTestView.xaml
+    /// Interaction logic for PromptLibraryView.xaml
     /// </summary>
-    public partial class PromptTestView : UserControl
+    public partial class PromptLibraryView : UserControl
     {
-        public PromptTestView()
+        public PromptLibraryView()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Messenger<Prompts>.Invoke(Prompts.None);
         }
     }
 }

@@ -1,87 +1,508 @@
-﻿<UserControl
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             xmlns:mdl="clr-namespace:SquirrelEDID.Model"
-             xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
-             xmlns:conv="clr-namespace:SquirrelEDID.Utilities.Converters"
-             xmlns:metro="http://schemas.codeplex.com/elysium"
-             xmlns:params="http://schemas.codeplex.com/elysium/params" x:Class="SquirrelEDID.View.EDIDView"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <conv:ByteArraySegmentationConverter x:Key="splitConv"/>
-        <Style TargetType="xctk:PropertyGrid">
-            <Setter Property="Background" Value="{DynamicResource BackgroundBrush}"/>
-            <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-            <Setter Property="BorderBrush" Value="{DynamicResource AccentBrush}"/>
-        </Style>
-    </UserControl.Resources>
-    <UserControl.DataContext>
-        <Binding Path="Repository[EDIDViewModel]" Source="{StaticResource ioc}"/>
-    </UserControl.DataContext>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <!--<TextBlock Grid.Row="0" Text="{utils:I18N EDID_Header}" HorizontalAlignment="Center"/>-->
-        <StackPanel Grid.Row="0" Orientation="Horizontal">
-            <metro:CommandButton Header="{utils:I18N EDID_FromLibrary}" Command="{Binding FromLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromLibraryHelp}">
-                <Image Source="/SquirrelEDID;component/Resources/Images/Database.png" Width="32"/>
-            </metro:CommandButton>
-            <metro:CommandButton Header="{utils:I18N EDID_FromScreen}" Command="{Binding FromScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromScreenHelp}">
-                <Image Source="/SquirrelEDID;component/Resources/Images/Display.png" Width="32"/>
-            </metro:CommandButton>
-            <metro:CommandButton Header="{utils:I18N EDID_FromProgrammer}" Command="{Binding FromProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromProgrammerHelp}">
-                <Image Source="/SquirrelEDID;component/Resources/Images/Programmer.png" Width="32"/>
-            </metro:CommandButton>
-            <Rectangle HorizontalAlignment="Stretch" Width="2" Fill="{DynamicResource ForegroundBrush}"/>
-            <metro:CommandButton/>
-        </StackPanel>
-        <DataGrid Grid.Row="1" AutoGenerateColumns="False" RowHeaderWidth="0"
-			Background="{DynamicResource BackgroundBrush}" RowBackground="{DynamicResource BackgroundBrush}" AlternatingRowBackground="{DynamicResource BackgroundBrush}"
-			Foreground="{DynamicResource ForegroundBrush}"
-			BorderBrush="{DynamicResource AccentBrush}">
-            <DataGrid.Resources>
-                <Style TargetType="{x:Type DataGridColumnHeader}">
-                    <Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
-                    <Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
-                    <Setter Property="FontSize" Value="14"/>
-                    <Setter Property="Padding" Value="5,0,5,0"/>
-                </Style>
-            </DataGrid.Resources>
-            <DataGrid.ItemsSource>
-                <Binding Converter="{StaticResource splitConv}" Path="EDID.Buffer"/>
-            </DataGrid.ItemsSource>
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Offset" Binding="{Binding Offset}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="0" Binding="{Binding [0], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="1" Binding="{Binding [1], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="2" Binding="{Binding [2], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="3" Binding="{Binding [3], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="4" Binding="{Binding [4], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="5" Binding="{Binding [5], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="6" Binding="{Binding [6], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="7" Binding="{Binding [7], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="8" Binding="{Binding [8], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="9" Binding="{Binding [9], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="10" Binding="{Binding [10], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="11" Binding="{Binding [11], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="12" Binding="{Binding [12], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="13" Binding="{Binding [13], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="14" Binding="{Binding [14], StringFormat=\{0:X2\}}"/>
-                <DataGridTextColumn Header="15" Binding="{Binding [15], StringFormat=\{0:X2\}}"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-            <xctk:PropertyGrid SelectedObject="{Binding EDID}" ShowSortOptions="False" ShowSummary="False" ShowTitle="False">
-            </xctk:PropertyGrid>
-        </ScrollViewer>
-    </Grid>
+﻿<UserControl x:Class="SquirrelEDID.View.EDIDView"
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+			 xmlns:mdl="clr-namespace:SquirrelEDID.Model"
+			 xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+			 xmlns:conv="clr-namespace:SquirrelEDID.Utilities.Converters"
+			 xmlns:metro="http://schemas.codeplex.com/elysium"
+			 xmlns:params="http://schemas.codeplex.com/elysium/params"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:b="clr-namespace:SquirrelEDID.Utilities.Behaviors"
+			 xmlns:vm="clr-namespace:SquirrelEDID.ViewModel"
+			 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+			 mc:Ignorable="d" 
+			 x:Name="root"
+			 d:DesignHeight="300" d:DesignWidth="300">
+	<UserControl.Resources>
+		<conv:ByteArraySegmentationConverter x:Key="splitConv"/>
+		<conv:ByteToHexStringConverter x:Key="byteHexConv"/>
+		<GridLength x:Key="inputHeight">32</GridLength>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+			<Style.Triggers>
+				<Trigger Property="Validation.HasError" Value="True">
+					<Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+				</Trigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="sDigital" TargetType="RowDefinition">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding EDID.IsDigital}" Value="True">
+					<Setter Property="Height" Value="{StaticResource inputHeight}"/>
+				</DataTrigger>
+				<DataTrigger Binding="{Binding EDID.IsDigital}" Value="False">
+					<Setter Property="Height" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="sAnalog" TargetType="RowDefinition">
+			<Style.Triggers>
+				<DataTrigger Binding="{Binding EDID.IsDigital}" Value="False">
+					<Setter Property="Height" Value="{StaticResource inputHeight}"/>
+				</DataTrigger>
+				<DataTrigger Binding="{Binding EDID.IsDigital}" Value="True">
+					<Setter Property="Height" Value="0"/>
+				</DataTrigger>
+			</Style.Triggers>
+		</Style>
+		<Style x:Key="sRow" TargetType="Grid">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="Grid.ColumnSpan" Value="2"/>
+			<Setter Property="Opacity" Value="0.4"/>
+		</Style>
+		<Style x:Key="sAlt" TargetType="Grid">
+			<Setter Property="HorizontalAlignment" Value="Stretch"/>
+			<Setter Property="VerticalAlignment" Value="Stretch"/>
+			<Setter Property="Background" Value="{DynamicResource SemitransparentContrastBrush}"/>
+			<Setter Property="Grid.ColumnSpan" Value="2"/>
+			<Setter Property="Opacity" Value="0.4"/>
+		</Style>
+	</UserControl.Resources>
+	<UserControl.DataContext>
+		<Binding Path="Repository[EDIDViewModel]" Source="{StaticResource ioc}"/>
+	</UserControl.DataContext>
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<!--<TextBlock Grid.Row="0" Text="{utils:I18N EDID_Header}" HorizontalAlignment="Center"/>-->
+		<Grid Grid.Row="0">
+			<Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="4"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			
+			<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{utils:I18N EDID_FromFooter}" HorizontalAlignment="Center" FontStyle="Italic" FontSize="10" Opacity="0.75"/>
+			<metro:CommandButton Grid.Row="0" Grid.Column="0" Header="{utils:I18N EDID_FromLibrary}" Command="{Binding FromLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromLibraryHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="o" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+			<metro:CommandButton Grid.Row="0" Grid.Column="1" Header="{utils:I18N EDID_FromScreen}" Command="{Binding FromScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromScreenHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="e" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+			<metro:CommandButton Grid.Row="0" Grid.Column="2" Header="{utils:I18N EDID_FromProgrammer}" Command="{Binding FromProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromProgrammerHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="b" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+			
+			<Rectangle Grid.Row="0" Grid.RowSpan="2" Grid.Column="3" VerticalAlignment="Stretch" HorizontalAlignment="Left" Width="2" Fill="{DynamicResource ForegroundBrush}"/>
+
+			<TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4" Text="{utils:I18N EDID_ToFooter}" HorizontalAlignment="Center" FontStyle="Italic" FontSize="10" Opacity="0.75"/>
+			<metro:CommandButton Grid.Row="0" Grid.Column="5" Header="{utils:I18N EDID_ToLibrary}" Command="{Binding ToLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToLibraryHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="n" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+			<metro:CommandButton Grid.Row="0" Grid.Column="6" Header="{utils:I18N EDID_ToFiles}" Command="{Binding ToFilesCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToFilesHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="p" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+			<metro:CommandButton Grid.Row="0" Grid.Column="7" Header="{utils:I18N EDID_ToScreen}" Command="{Binding ToScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToScreenHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="e" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+			<metro:CommandButton Grid.Row="0" Grid.Column="8" Header="{utils:I18N EDID_ToProgrammer}" Command="{Binding ToProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToProgrammerHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="b" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
+		</Grid>
+		<ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+			<Grid>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition/>
+					<ColumnDefinition SharedSizeGroup="colValue"/>
+				</Grid.ColumnDefinitions>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Style="{StaticResource sDigital}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Style="{StaticResource sDigital}"/>
+					<RowDefinition Style="{StaticResource sAnalog}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="{StaticResource inputHeight}"/>
+					<RowDefinition Height="Auto"/>
+					<RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+				<DataGrid Grid.Row="0" Grid.ColumnSpan="2" AutoGenerateColumns="False" RowHeaderWidth="0"
+				Background="{DynamicResource BackgroundBrush}" RowBackground="{DynamicResource BackgroundBrush}" AlternatingRowBackground="{DynamicResource BackgroundBrush}"
+				Foreground="{DynamicResource ForegroundBrush}"
+				BorderBrush="{DynamicResource AccentBrush}">
+					<DataGrid.Resources>
+						<Style TargetType="{x:Type DataGridColumnHeader}">
+							<Setter Property="Background" Value="{DynamicResource AccentBrush}"/>
+							<Setter Property="Foreground" Value="{DynamicResource ForegroundBrush}"/>
+							<Setter Property="FontWeight" Value="Bold"/>
+							<Setter Property="FontSize" Value="14"/>
+							<Setter Property="Padding" Value="5,0,5,0"/>
+						</Style>
+					</DataGrid.Resources>
+					<DataGrid.ItemsSource>
+						<Binding Converter="{StaticResource splitConv}" Path="EDID.Buffer"/>
+					</DataGrid.ItemsSource>
+					<DataGrid.Columns>
+						<DataGridTextColumn Header="Offset" Binding="{Binding Offset}" IsReadOnly="True"/>
+						<DataGridTextColumn Header="0" Binding="{Binding [0], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="1" Binding="{Binding [1], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="2" Binding="{Binding [2], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="3" Binding="{Binding [3], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="4" Binding="{Binding [4], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="5" Binding="{Binding [5], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="6" Binding="{Binding [6], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="7" Binding="{Binding [7], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="8" Binding="{Binding [8], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="9" Binding="{Binding [9], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="10" Binding="{Binding [10], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="11" Binding="{Binding [11], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="12" Binding="{Binding [12], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="13" Binding="{Binding [13], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="14" Binding="{Binding [14], Converter={StaticResource byteHexConv}}"/>
+						<DataGridTextColumn Header="15" Binding="{Binding [15], Converter={StaticResource byteHexConv}}"/>
+					</DataGrid.Columns>
+				</DataGrid>
+
+				<Rectangle Grid.Row="1" Grid.RowSpan="50" Grid.Column="0" HorizontalAlignment="Right" Width="2" Fill="{DynamicResource AccentBrush}" Opacity="0.25"/>
+				
+				<Grid Grid.Row="1" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="1" Grid.Column="0" Text="{utils:I18N EDID_Manufaturer}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ManufaturerHelp}"/>
+				<TextBox Grid.Row="1" Grid.Column="1" Text="{Binding EDID.ManufacturerID, Mode=TwoWay}" MaxLength="3" VerticalAlignment="Center" 
+						 utils:ValidationHelper.ValidationType="{x:Type sys:String}" utils:ValidationHelper.MinLength="3" utils:ValidationHelper.MaxLength="3" utils:ValidationHelper.OnlyCharacters="True" 
+						 utils:TextBoxBindingHelper.UpdateSourceOnChange="True" utils:TextBoxBindingHelper.UpdateDelay="0.5"
+						 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ManufaturerHelp}"/>
+
+				<TextBlock Grid.Row="2" Grid.Column="0" Text="{utils:I18N EDID_ProductCode}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ProductCodeHelp}"/>
+				<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding EDID.ProductCode, Mode=TwoWay}" VerticalAlignment="Center"
+						 utils:ValidationHelper.ValidationType="{x:Type sys:UInt16}"
+						 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ProductCodeHelp}"/>
+
+
+				<Grid Grid.Row="3" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="3" Grid.Column="0" Text="{utils:I18N EDID_SerialCode}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SerialCodeHelp}"/>
+				<TextBox Grid.Row="3" Grid.Column="1" Text="{Binding EDID.SerialCode, Mode=TwoWay}" VerticalAlignment="Center"
+						 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}"
+						 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SerialCodeHelp}"/>
+
+				<TextBlock Grid.Row="4" Grid.Column="0" Text="{utils:I18N EDID_WeekOfManufature}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WeekOfManufatureHelp}"/>
+				<UniformGrid Grid.Row="4" Grid.Column="1" Rows="1" VerticalAlignment="Center">
+					<TextBox Text="{Binding EDID.WeekOfManufacture, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}" utils:ValidationHelper.MinValue="0"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WeekOfManufatureHelp}"/>
+					<TextBox Text="{Binding EDID.YearOfManufacture, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}" utils:ValidationHelper.MinValue="1990" utils:ValidationHelper.MaxValue="2245"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_YearOfManufactureHelp}"/>
+				</UniformGrid>
+
+				<Grid Grid.Row="5" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="5" Grid.Column="0" Text="{utils:I18N EDID_Version}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_VersionHelp}"/>
+				<UniformGrid Grid.Row="5" Grid.Column="1" Rows="1" VerticalAlignment="Center">
+					<TextBox Text="{Binding EDID.Version, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Byte}"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_VersionHelp}"/>
+					<TextBox Text="{Binding EDID.Revision, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Byte}"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_RevisionHelp}"/>
+				</UniformGrid>
+				
+				<TextBlock Grid.Row="6" Grid.Column="0" Text="{utils:I18N EDID_Digital}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DigitalHelp}"/>
+				<metro:ToggleSwitch Grid.Row="6" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.IsDigital, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DigitalHelp}"/>
+				
+				<!-- DIGITAL -->
+				<Grid Grid.Row="7" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="7" Grid.Column="0" Text="{utils:I18N EDID_DFPCompatible}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DFPCompatibleHelp}"/>
+				<metro:ToggleSwitch Grid.Row="7" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.IsDFPCompatible, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DFPCompatibleHelp}"/>
+				<!-- DIGITAL END -->
+				
+				<!-- ANALOG -->
+				<TextBlock Grid.Row="8" Grid.Column="0" Text="{utils:I18N EDID_WhiteAndSync}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteAndSyncHelp}"/>
+				<ComboBox Grid.Row="8" Grid.Column="1" ItemsSource="{Binding EDID.WhiteAndSyncLevels}" IsReadOnly="True" SelectedIndex="{Binding EDID.WhiteAndSync, Mode=TwoWay}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteAndSyncHelp}"/>
+				<!--<TextBox Grid.Row="8" Grid.Column="1" Text="{Binding EDID.WhiteAndSync, Mode=TwoWay}" VerticalAlignment="Center"/>-->
+
+				<Grid Grid.Row="9" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="9" Grid.Column="0" Text="{utils:I18N EDID_BlankToBlack}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlankToBlackHelp}"/>
+				<metro:ToggleSwitch Grid.Row="9" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.BlankToBlack, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlankToBlackHelp}"/>
+
+				<TextBlock Grid.Row="10" Grid.Column="0" Text="{utils:I18N EDID_SeperateSync}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SeperateSyncHelp}"/>
+				<metro:ToggleSwitch Grid.Row="10" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.SeperateSync, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SeperateSyncHelp}"/>
+
+				<Grid Grid.Row="11" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="11" Grid.Column="0" Text="{utils:I18N EDID_CompositeSync}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CompositeSyncHelp}"/>
+				<metro:ToggleSwitch Grid.Row="11" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.CompositeSync, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CompositeSyncHelp}"/>
+
+				<TextBlock Grid.Row="12" Grid.Column="0" Text="{utils:I18N EDID_SyncOnGreen}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SyncOnGreenHelp}"/>
+				<metro:ToggleSwitch Grid.Row="12" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.SyncOnGreen, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SyncOnGreenHelp}"/>
+
+				<Grid Grid.Row="13" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="13" Grid.Column="0" Text="{utils:I18N EDID_VSyncPulse}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_VSyncPulseHelp}"/>
+				<metro:ToggleSwitch Grid.Row="13" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.VSyncPulse, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_VSyncPulseHelp}"/>
+				<!-- ANALOG END -->
+
+				<TextBlock Grid.Row="14" Grid.Column="0" Text="{utils:I18N EDID_MaxHorizontal}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_MaxHorizontalHelp}"/>
+				<TextBox Grid.Row="14" Grid.Column="1" Text="{Binding EDID.MaxHorizontal, Mode=TwoWay}" VerticalAlignment="Center"
+						 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="292"
+						 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_MaxHorizontalHelp}"/>
+
+				<Grid Grid.Row="15" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="15" Grid.Column="0" Text="{utils:I18N EDID_MaxVertical}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_MaxVerticalHelp}"/>
+				<TextBox Grid.Row="15" Grid.Column="1" Text="{Binding EDID.MaxVertical, Mode=TwoWay}" VerticalAlignment="Center"
+						 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}" utils:ValidationHelper.MinValue="0"
+						 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_MaxVerticalHelp}"/>
+
+				<TextBlock Grid.Row="16" Grid.Column="0" Text="{utils:I18N EDID_Gamma}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GammaHelp}"/>
+				<UniformGrid Grid.Row="16" Grid.Column="1" VerticalAlignment="Center" Rows="1">
+					<TextBox Text="{Binding EDID.Gamma, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="1" utils:ValidationHelper.MaxValue="3.54"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GammaHelp}"/>
+					<Slider Minimum="1" Maximum="3.54" Value="{Binding EDID.Gamma, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GammaHelp}"/>
+				</UniformGrid>
+
+				<Grid Grid.Row="17" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="17" Grid.Column="0" Text="{utils:I18N EDID_ColorSettings}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ColorSettingsHelp}"/>
+
+				<TextBlock Grid.Row="18" Grid.Column="0" Text="{utils:I18N EDID_Red}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_RedHelp}"/>
+				<UniformGrid Grid.Row="18" Grid.Column="1" Rows="1" VerticalAlignment="Center">
+					<TextBox Text="{Binding EDID.ClrRedX, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_RedXHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrRedX, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							utils:ToolTipHelper.ToolTip="{utils:I18N EDID_RedXHelp}"/>
+					<TextBox Text="{Binding EDID.ClrRedY, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_RedYHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrRedY, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							utils:ToolTipHelper.ToolTip="{utils:I18N EDID_RedYHelp}"/>
+				</UniformGrid>
+
+				<Grid Grid.Row="19" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="19" Grid.Column="0" Text="{utils:I18N EDID_Green}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GreenHelp}"/>
+				<UniformGrid Grid.Row="19" Grid.Column="1" Rows="1" VerticalAlignment="Center">
+					<TextBox Text="{Binding EDID.ClrGreenX, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GreenXHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrGreenX, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GreenXHelp}"/>
+					<TextBox Text="{Binding EDID.ClrGreenY, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GreenYHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrGreenY, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GreenYHelp}"/>
+				</UniformGrid>
+
+				<TextBlock Grid.Row="20" Grid.Column="0" Text="{utils:I18N EDID_Blue}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlueHelp}"/>
+				<UniformGrid Grid.Row="20" Grid.Column="1" Rows="1" VerticalAlignment="Center">
+					<TextBox Text="{Binding EDID.ClrBlueX, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlueXHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrBlueX, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlueXHelp}"/>
+					<TextBox Text="{Binding EDID.ClrBlueY, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlueYHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrBlueY, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_BlueYHelp}"/>
+				</UniformGrid>
+
+				<Grid Grid.Row="21" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="21" Grid.Column="0" Text="{utils:I18N EDID_White}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteHelp}"/>
+				<UniformGrid Grid.Row="21" Grid.Column="1" Rows="1" VerticalAlignment="Center">
+					<TextBox Text="{Binding EDID.ClrWhiteX, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteXHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrWhiteX, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteXHelp}"/>
+					<TextBox Text="{Binding EDID.ClrWhiteY, Mode=TwoWay}" VerticalAlignment="Center"
+							 utils:ValidationHelper.ValidationType="{x:Type sys:Double}" utils:ValidationHelper.MinValue="0" utils:ValidationHelper.MaxValue="1"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteYHelp}"/>
+					<Slider Minimum="0" Maximum="1" Value="{Binding EDID.ClrWhiteY, Mode=TwoWay}" SmallChange="0.01" LargeChange="0.1" VerticalAlignment="Center"
+							 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_WhiteYHelp}"/>
+				</UniformGrid>
+
+				<TextBlock Grid.Row="22" Grid.Column="0" Text="{utils:I18N EDID_SupportedFeatures}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_SupportedFeaturesHelp}"/>
+
+				<Grid Grid.Row="23" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="23" Grid.Column="0" Text="{utils:I18N EDID_DPMSStandBy}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DPMSStandByHelp}"/>
+				<metro:ToggleSwitch Grid.Row="23" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.DPMSStandBy, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DPMSStandByHelp}"/>
+
+				<TextBlock Grid.Row="24" Grid.Column="0" Text="{utils:I18N EDID_DPMSSuspend}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DPMSSuspendHelp}"/>
+				<metro:ToggleSwitch Grid.Row="24" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.DPMSSuspend, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DPMSSuspendHelp}"/>
+
+				<Grid Grid.Row="25" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="25" Grid.Column="0" Text="{utils:I18N EDID_DPMSActiveOff}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DPMSActiveOffHelp}"/>
+				<metro:ToggleSwitch Grid.Row="25" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.DPMSActiveOff, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DPMSActiveOffHelp}"/>
+
+				<TextBlock Grid.Row="26" Grid.Column="0" Text="{utils:I18N EDID_DisplayType}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DisplayTypeHelp}"/>
+				<ComboBox Grid.Row="26" Grid.Column="1" ItemsSource="{Binding EDID.DisplayTypesDigital}" IsReadOnly="True" SelectedIndex="{Binding EDID.DisplayType, Mode=TwoWay}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DisplayTypeHelp}"/>
+
+				<TextBlock Grid.Row="27" Grid.Column="0" Text="{utils:I18N EDID_DisplayType}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DisplayTypeHelp}"/>
+				<ComboBox Grid.Row="27" Grid.Column="1" ItemsSource="{Binding EDID.DisplayTypesAnalog}" IsReadOnly="True" SelectedIndex="{Binding EDID.DisplayType, Mode=TwoWay}" VerticalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_DisplayTypeHelp}"/>
+
+				<Grid Grid.Row="28" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="28" Grid.Column="0" Text="{utils:I18N EDID_StandardSRGB}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_StandardSRGBHelp}"/>
+				<metro:ToggleSwitch Grid.Row="28" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.StandardsRGB, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_StandardSRGBHelp}"/>
+
+				<TextBlock Grid.Row="29" Grid.Column="0" Text="{utils:I18N EDID_PreferredTimingDefined}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_PreferredTimingDefinedHelp}"/>
+				<metro:ToggleSwitch Grid.Row="29" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.PreferredTiming, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_PreferredTimingDefinedHelp}"/>
+
+				<Grid Grid.Row="30" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="30" Grid.Column="0" Text="{utils:I18N EDID_GTFSupport}" VerticalAlignment="Center" Margin="10,0,0,0" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GTFSupportHelp}"/>
+				<metro:ToggleSwitch Grid.Row="30" Grid.Column="1" OnHeader="{utils:I18N Yes}" OffHeader="{utils:I18N No}" IsChecked="{Binding EDID.GTFSupport, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_GTFSupportHelp}"/>
+
+				<TextBlock Grid.Row="31" Grid.Column="0" Text="{utils:I18N EDID_EstablishedTimings}" VerticalAlignment="Top" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_EstablishedTimingsHelp}"/>
+				<ItemsControl Grid.Row="31" Grid.Column="1">
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=0, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=0, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=1, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=1, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=2, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=2, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=3, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=3, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=4, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=4, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=5, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=5, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=6, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=6, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=7, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=7, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=8, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=8, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=9, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=9, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=10, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=10, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=11, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=11, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=12, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=12, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=13, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=13, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=14, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=14, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=15, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=15, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=16, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=16, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=17, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=17, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=18, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=18, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=19, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=19, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=20, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=20, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=21, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=21, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=22, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=22, Name=True}}"/>
+					</CheckBox>
+					<CheckBox IsChecked="{Binding EDID.TimingSupportedRaw, Converter={conv:EstablishedTimingConverter Bit=23, Name=False}, Mode=TwoWay}" VerticalContentAlignment="Center">
+						<TextBlock Text="{Binding ., Converter={conv:EstablishedTimingConverter Bit=23, Name=True}}"/>
+					</CheckBox>
+				</ItemsControl>
+
+				<Grid Grid.Row="32" Style="{StaticResource sAlt}"/>
+				<TextBlock Grid.Row="32" Grid.Column="0" Text="{utils:I18N EDID_CustomTimings}" VerticalAlignment="Top" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CustomTimingsHelp}"/>
+				<ItemsControl Grid.Row="32" Grid.Column="1" ItemsSource="{Binding EDID.CustomTimings}">
+					<ItemsControl.ItemTemplate>
+						<DataTemplate>
+							<UniformGrid Rows="1">
+								<CheckBox IsChecked="{Binding Used, Mode=TwoWay}" HorizontalAlignment="Right" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CustomTimings_UsedHelp}"/>
+								<TextBox Text="{Binding XResolution, Mode=TwoWay}" 
+										 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}" utils:ValidationHelper.MinValue="256" utils:ValidationHelper.MaxValue="2288"
+										 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CustomTimings_XResolutionHelp}"/>
+								<ComboBox ItemsSource="{Binding Source={StaticResource ioc}, Path=Repository[EDIDViewModel].EDID.AspectRatios}" SelectedIndex="{Binding AspectRatio, Mode=TwoWay}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CustomTimings_AspectRatioHelp}"/>
+								<TextBox Text="{Binding VerticalFrequency, Mode=TwoWay}"
+										 utils:ValidationHelper.ValidationType="{x:Type sys:Int32}" utils:ValidationHelper.MaxValue="123"
+										 utils:ToolTipHelper.ToolTip="{utils:I18N EDID_CustomTimings_VerticalFrequencyHelp}"/>
+							</UniformGrid>
+						</DataTemplate>
+					</ItemsControl.ItemTemplate>
+				</ItemsControl>
+			</Grid>
+		</ScrollViewer>
+	</Grid>
 </UserControl>

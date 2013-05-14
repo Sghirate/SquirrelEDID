@@ -1,31 +1,41 @@
 ﻿<UserControl x:Class="SquirrelEDID.View.WelcomeView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
-             DataContext="{Binding Source={StaticResource ioc}, Path=Repository[WelcomeViewModel]}"
-             mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="{utils:I18N Welcome_Part1}" FontSize="32" Margin="10" TextAlignment="Center"/>
-        <TextBlock Grid.Row="1" Text="{utils:I18N Welcome_Part2}" FontSize="22" TextWrapping="Wrap" Margin="10"/>
-        <Button Grid.Row="2" HorizontalAlignment="Right" Command="{Binding StartCommand}">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="{utils:I18N Welcome_Continue}" VerticalAlignment="Center"/>
-                <Image Source="/SquirrelEDID;component/Resources/Images/Next.png" Height="32" Margin="10,0,0,0"/>
-            </StackPanel>
-        </Button>
-        <Button Grid.Row="2" HorizontalAlignment="Left" Command="{Binding AboutCommand}">
-            <StackPanel Orientation="Horizontal">
-                <Image Height="32" Source="/SquirrelEDID;component/Resources/Images/Question.png" Margin="0,0,10,0"/>
-                <TextBlock Text="{utils:I18N Welcome_About}" VerticalAlignment="Center"/>
-            </StackPanel>
-        </Button>
-    </Grid>
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+			 xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+			 xmlns:b="clr-namespace:SquirrelEDID.Utilities.Behaviors"
+			 DataContext="{Binding Source={StaticResource ioc}, Path=Repository[WelcomeViewModel]}"
+			 mc:Ignorable="d" 
+			 d:DesignHeight="300" d:DesignWidth="300">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+		<TextBlock Grid.Row="0" Text="{utils:I18N Welcome_Part1}" FontSize="32" Margin="10" TextAlignment="Center"/>
+		<TextBlock Grid.Row="1" Text="{utils:I18N Welcome_Part2}" FontSize="22" TextWrapping="Wrap" Margin="10"/>
+		<Button Grid.Row="2" HorizontalAlignment="Right" Command="{Binding StartCommand}">
+			<StackPanel Orientation="Horizontal">
+				<TextBlock Text="{utils:I18N Welcome_Continue}" VerticalAlignment="Center"/>
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="j" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</StackPanel>
+		</Button>
+		<Button Grid.Row="2" HorizontalAlignment="Left" Command="{Binding AboutCommand}">
+			<StackPanel Orientation="Horizontal">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="d" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+				<TextBlock Text="{utils:I18N Welcome_About}" VerticalAlignment="Center"/>
+			</StackPanel>
+		</Button>
+	</Grid>
 </UserControl>

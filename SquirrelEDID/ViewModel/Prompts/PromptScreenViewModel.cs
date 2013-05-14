@@ -106,7 +106,7 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleAcceptExecuted(object obj)
         {
-            Messenger<EDID>.Invoke((EDID)SelectedDisplay.Additional);
+            Messenger<DisplayInfo>.Invoke(SelectedDisplay);
             Messenger<Prompts>.Invoke(Prompts.None);
         }
 
