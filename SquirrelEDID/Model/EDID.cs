@@ -970,6 +970,11 @@ namespace SquirrelEDID.Model
             //OnPropertyChanged("");
         }
 
+        public static bool IsEDIDFile(string path)
+        {
+            return IsHex(path) || IsTxt(path) || IsDat(path);
+        }
+
         public static EDID FromFile(string path)
         {
             if (IsHex(path))
@@ -1052,6 +1057,9 @@ namespace SquirrelEDID.Model
                 while (!sr.EndOfStream)
                 {
                     string line = sr.ReadLine();
+                    if (line.Length < 5)
+                        continue;
+
                     if (line[5] == '|')
                         txt += line.Substring(7);
                 }

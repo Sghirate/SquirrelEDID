@@ -255,6 +255,8 @@ namespace SquirrelEDID.Utilities
         private string GetErr(string key, object args = null)
         {
             string msg = Strings.ResourceManager.GetString(key);
+            if (String.IsNullOrEmpty(msg))
+                msg = "#" + key;
             if (msg.Contains("{0}"))
                 msg = String.Format(msg, args);
             msg += "\r\n";

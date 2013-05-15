@@ -534,4 +534,22 @@
   <data name="EDID_ToScreenHelp" xml:space="preserve">
     <value>Use EDID to override a screen's system EDID.</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Import file</value>
+  </data>
+  <data name="Library_Invalid" xml:space="preserve">
+    <value>The given file name contains invalid characters!</value>
+  </data>
+  <data name="Library_ToExists" xml:space="preserve">
+    <value>A file with the given name already exists! Override?</value>
+  </data>
+  <data name="Library_ToHeader" xml:space="preserve">
+    <value>Save to file:</value>
+  </data>
+  <data name="OFD_Filter" xml:space="preserve">
+    <value>Binary file (*.bin)|*.bin|Text file (*.txt)|*.txt|Dat file (*.dat)|*.dat|All files (*.*)|*.*</value>
+  </data>
+  <data name="OFD_Title" xml:space="preserve">
+    <value>Select EDID file for import</value>
+  </data>
 </root>

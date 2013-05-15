@@ -1006,11 +1006,65 @@ namespace SquirrelEDID.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import file.
+        /// </summary>
+        internal static string Library_Import {
+            get {
+                return ResourceManager.GetString("Library_Import", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The given file name contains invalid characters!.
+        /// </summary>
+        internal static string Library_Invalid {
+            get {
+                return ResourceManager.GetString("Library_Invalid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A file with the given name already exists! Override?.
+        /// </summary>
+        internal static string Library_ToExists {
+            get {
+                return ResourceManager.GetString("Library_ToExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save to file:.
+        /// </summary>
+        internal static string Library_ToHeader {
+            get {
+                return ResourceManager.GetString("Library_ToHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Binary file (*.bin)|*.bin|Text file (*.txt)|*.txt|Dat file (*.dat)|*.dat|All files (*.*)|*.*.
+        /// </summary>
+        internal static string OFD_Filter {
+            get {
+                return ResourceManager.GetString("OFD_Filter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select EDID file for import.
+        /// </summary>
+        internal static string OFD_Title {
+            get {
+                return ResourceManager.GetString("OFD_Title", resourceCulture);
             }
         }
         

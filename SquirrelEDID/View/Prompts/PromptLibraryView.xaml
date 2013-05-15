@@ -6,9 +6,16 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:b="clr-namespace:SquirrelEDID.Utilities.Behaviors"
              xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+             xmlns:conv="clr-namespace:SquirrelEDID.Utilities.Converters"
              xmlns:metro="http://schemas.codeplex.com/elysium"
+             DataContext="{Binding Source={StaticResource ioc}, Path=Repository[PromptLibraryViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <Border HorizontalAlignment="Center" VerticalAlignment="Center" Background="{DynamicResource BackgroundBrush}" CornerRadius="5" BorderBrush="{DynamicResource AccentBrush}" BorderThickness="2" Padding="5">
             <Grid>
@@ -18,7 +25,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
-                    <metro:CommandButton Grid.Row="0" Grid.Column="8" Header="{utils:I18N Library_Import}" Command="{Binding ImportCommand}">
+                    <metro:CommandButton Grid.Row="0" Grid.Column="8" Header="{utils:I18N Library_Import}" Command="{Binding ImportCommand}" IsEnabled="{Binding Loading, Converter={conv:BoolToBoolConverter TrueValue=False, FalseValue=True}}">
                         <Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="o" FontRenderingEmSize="24">
                             <i:Interaction.Behaviors>
                                 <b:IconBehavior/>
@@ -26,9 +33,24 @@
                         </Glyphs>
                     </metro:CommandButton>
                 </StackPanel>
-                <ItemsControl Grid.Row="1">
-                    
-                </ItemsControl>
+                <ListBox Grid.Row="1" ItemsSource="{Binding EDIDFiles}" SelectedItem="{Binding SelectedFile}" Opacity="{Binding Loading, Converter={conv:BoolToDoubleConverter TrueValue=0.5, FalseValue=1}}" IsEnabled="{Binding Loading, Converter={conv:BoolToBoolConverter TrueValue=False, FalseValue=True}}" MaxHeight="300">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock HorizontalAlignment="Stretch" FontSize="20" FontWeight="Black" Text="{Binding .}">
+                                <TextBlock.InputBindings>
+                                    <MouseBinding Command="{Binding Source={StaticResource ioc}, Path=Repository[PromptLibraryViewModel].AcceptCommand}" Gesture="LeftDoubleClick"/>
+                                </TextBlock.InputBindings>
+                            </TextBlock>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <metro:ProgressRing Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" State="Busy" Width="32" Height="32" Visibility="{Binding Loading, Converter={conv:BoolToVisibilityConverter TrueValue=Visible, FalseValue=Hidden}}"/>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Command="{Binding CancelCommand}" Margin="0,5,5,0">
                         <TextBlock Text="{utils:I18N Cancel}"/>

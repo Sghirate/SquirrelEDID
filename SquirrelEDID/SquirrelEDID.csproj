@@ -91,6 +91,7 @@
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
     <Compile Include="Utilities\Behaviors\IconBehavior.cs" />
+    <Compile Include="Utilities\Converters\BoolToValueConverter.cs" />
     <Compile Include="Utilities\Converters\ByteArraySegmentationConverter.cs" />
     <Compile Include="Utilities\Converters\ByteToHexStringConverter.cs" />
     <Compile Include="Utilities\Converters\DoubleToIntConverter.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Utilities\EventToCommand.cs" />
     <Compile Include="Utilities\Extensions\BitArrayExtension.cs" />
     <Compile Include="Utilities\Extensions\ByteArrayExtension.cs" />
+    <Compile Include="Utilities\Extensions\StringExtensions.cs" />
     <Compile Include="Utilities\I18N.cs" />
     <Compile Include="Utilities\IoC.cs" />
     <Compile Include="Utilities\JSON.cs" />
@@ -116,7 +118,8 @@
     <Compile Include="ViewModel\EDIDViewModel.cs" />
     <Compile Include="ViewModel\FolderBrowserViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\PromptLibraryViewModel.cs" />
+    <Compile Include="ViewModel\Prompts\PromptLibrarySaveViewModel.cs" />
+    <Compile Include="ViewModel\Prompts\PromptLibraryViewModel.cs" />
     <Compile Include="ViewModel\Prompts\PromptProgrammerViewModel.cs" />
     <Compile Include="ViewModel\Prompts\PromptScreenViewModel.cs" />
     <Compile Include="ViewModel\WelcomeViewModel.cs" />
@@ -129,6 +132,9 @@
     </Compile>
     <Compile Include="View\FolderBrowserView.xaml.cs">
       <DependentUpon>FolderBrowserView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Prompts\PromptLibrarySaveView.xaml.cs">
+      <DependentUpon>PromptLibrarySaveView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Prompts\PromptLibraryView.xaml.cs">
       <DependentUpon>PromptLibraryView.xaml</DependentUpon>
@@ -163,6 +169,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\FolderBrowserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Prompts\PromptLibrarySaveView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

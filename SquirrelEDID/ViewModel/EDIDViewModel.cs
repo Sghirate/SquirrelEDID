@@ -151,7 +151,7 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleFromLibraryExecuted(object obj)
         {
-            //Messenger<ApplicationStates>.Invoke(ApplicationStates.)
+            Messenger<Prompts>.Invoke(Prompts.Library);
         }
 
         private bool HandleFromLibraryCanExecute(object obj)
@@ -200,7 +200,8 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleToLibraryExecuted(object obj)
         {
-
+            IoC.Get<PromptLibrarySaveViewModel>().EDID = EDID;
+            Messenger<Prompts>.Invoke(Prompts.LibrarySave);
         }
 
         private bool HandleToLibraryCanExecute(object obj)

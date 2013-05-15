@@ -4,9 +4,9 @@ using SquirrelEDID.Utilities;
 using SquirrelEDID.Utilities.Messaging;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace SquirrelEDID.ViewModel
 {
@@ -87,18 +87,17 @@ namespace SquirrelEDID.ViewModel
         #region Methods
         private void HandleLoadedExecuted(object obj)
         {
+            if (Loading)
+                return;
+
+            Loading = true;
             Task.Factory.StartNew(() =>
             {
-                App.Current.Dispatcher.BeginInvoke(new Action(() => { Loading = true; }), null);
-                List<DisplayInfo> displays = new List<DisplayInfo>();
-                foreach (var d in Display.GetDisplays())
-                {
+                var displays = Display.GetDisplays().ToList();
+                foreach (var d in displays)
                     if (d.EDID != null && d.EDID.Length > 0)
-                    {
                         d.Additional = new EDID(d.EDID);
-                        displays.Add(d);
-                    }
-                }
+
                 App.Current.Dispatcher.BeginInvoke(new Action(() => { Displays = displays; }), null);
                 App.Current.Dispatcher.BeginInvoke(new Action(() => { Loading = false; }), null);
             });

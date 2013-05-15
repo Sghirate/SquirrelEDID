@@ -5,6 +5,8 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:utils="clr-namespace:SquirrelEDID.Utilities"
+             xmlns:conv="clr-namespace:SquirrelEDID.Utilities.Converters"
+             xmlns:metro="http://schemas.codeplex.com/elysium"
              DataContext="{Binding Source={StaticResource ioc}, Path=Repository[PromptScreenViewModel]}"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -21,7 +23,7 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
-                <ListBox Grid.Row="0" ItemsSource="{Binding Displays}" SelectedItem="{Binding SelectedDisplay}">
+                <ListBox Grid.Row="0" ItemsSource="{Binding Displays}" SelectedItem="{Binding SelectedDisplay}" Opacity="{Binding Loading, Converter={conv:BoolToDoubleConverter TrueValue=0.5, FalseValue=1}}" IsEnabled="{Binding Loading, Converter={conv:BoolToBoolConverter TrueValue=False, FalseValue=True}}">
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
                             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -50,6 +52,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
+                <metro:ProgressRing Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" State="Busy" Width="32" Height="32" Visibility="{Binding Loading, Converter={conv:BoolToVisibilityConverter TrueValue=Visible, FalseValue=Hidden}}"/>
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
                     <Button Command="{Binding CancelCommand}" Margin="0,5,5,0">
                         <TextBlock Text="{utils:I18N Cancel}"/>

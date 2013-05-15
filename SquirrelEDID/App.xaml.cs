@@ -33,7 +33,8 @@ namespace SquirrelEDID
         None,
         Screen,
         Programmer,
-        Library
+        Library,
+        LibrarySave
     }
 
     /// <summary>

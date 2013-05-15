@@ -534,4 +534,22 @@
   <data name="EDID_ToScreenHelp" xml:space="preserve">
     <value>Benutze die EDID, um die System-EDID eines Bildschirmes zu überschreiben.</value>
   </data>
+  <data name="Library_Import" xml:space="preserve">
+    <value>Datei importieren</value>
+  </data>
+  <data name="Library_Invalid" xml:space="preserve">
+    <value>Der angegebene Dateiname enthält ungültige Zeichen!</value>
+  </data>
+  <data name="Library_ToExists" xml:space="preserve">
+    <value>Eine Datei mit dem angegebenen Namen existiert bereits! Überschreiben?</value>
+  </data>
+  <data name="Library_ToHeader" xml:space="preserve">
+    <value>In Datei speichern:</value>
+  </data>
+  <data name="OFD_Filter" xml:space="preserve">
+    <value>Binärdatei (*.bin)|*.bin|Textdatei (*.txt)|*.txt|Dat-Datei (*.dat)|*.dat|Alle Dateien (*.*)|*.*</value>
+  </data>
+  <data name="OFD_Title" xml:space="preserve">
+    <value>Wähle EDID Datei für den Import</value>
+  </data>
 </root>
