@@ -24,7 +24,8 @@ namespace SquirrelEDID.ViewModel
 
         #region Fields
         private EDIDAwait _await = EDIDAwait.None;
-        private EDID _edid; 
+        private EDID _edid;
+        private string _filename;
         #endregion
 
         #region Properties
@@ -58,9 +59,22 @@ namespace SquirrelEDID.ViewModel
 
                 _edid = value;
                 OnPropertyChanged("EDID");
+                Filename = null;
                 CommandManager.InvalidateRequerySuggested();
             }
         } 
+        public string Filename
+        {
+            get { return _filename; }
+            set
+            {
+                if (_filename == value)
+                    return;
+
+                _filename = value;
+                OnPropertyChanged("Filename");
+            }
+        }
         #endregion
 
         #region Commands
@@ -201,6 +215,7 @@ namespace SquirrelEDID.ViewModel
         private void HandleToLibraryExecuted(object obj)
         {
             IoC.Get<PromptLibrarySaveViewModel>().EDID = EDID;
+            IoC.Get<PromptLibrarySaveViewModel>().Filename = Filename;
             Messenger<Prompts>.Invoke(Prompts.LibrarySave);
         }
 

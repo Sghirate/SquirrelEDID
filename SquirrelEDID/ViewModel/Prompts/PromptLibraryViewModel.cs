@@ -133,6 +133,7 @@ namespace SquirrelEDID.ViewModel
                 return;
 
             IoC.Get<EDIDViewModel>().EDID = edid;
+            IoC.Get<EDIDViewModel>().Filename = SelectedFile;
         }
 
         private bool HandleAcceptCanExecute(object obj)

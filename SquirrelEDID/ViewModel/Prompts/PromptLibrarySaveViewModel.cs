@@ -144,6 +144,9 @@ namespace SquirrelEDID.ViewModel
 
         private void HandleAcceptExecuted(object obj)
         {
+            if (!Directory.Exists(_edidFolder))
+                Directory.CreateDirectory(_edidFolder);
+
             string file = Filename + Extension;
             string path = Path.Combine(_edidFolder, file);
             switch(Extension)
@@ -172,6 +175,7 @@ namespace SquirrelEDID.ViewModel
             InvalidFilename = false;
             Override = false;
             Extension = FileTypes[0];
+            CommandManager.InvalidateRequerySuggested();
         }
 
         public bool HandleLoadedCanExecute(object obj)
