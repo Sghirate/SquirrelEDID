@@ -20,7 +20,7 @@
 		<Button Grid.Row="2" HorizontalAlignment="Right" Command="{Binding StartCommand}">
 			<StackPanel Orientation="Horizontal">
 				<TextBlock Text="{utils:I18N Welcome_Continue}" VerticalAlignment="Center"/>
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="j" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="d" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>
@@ -29,7 +29,7 @@
 		</Button>
 		<Button Grid.Row="2" HorizontalAlignment="Left" Command="{Binding AboutCommand}">
 			<StackPanel Orientation="Horizontal">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="d" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="2" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>

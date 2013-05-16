@@ -241,6 +241,13 @@
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>if $(ConfigurationName) == Release (
+  "$(SolutionDir)\ThirdParty\VersionTask.exe" -release "$(ProjectDir)\Properties\AssemblyInfo.cs"
+) ELSE (
+  "$(SolutionDir)\ThirdParty\VersionTask.exe" "$(ProjectDir)\Properties\AssemblyInfo.cs"
+)</PreBuildEvent>
+  </PropertyGroup>
   <!--<Target Name="AfterResolveReferences">
     <ItemGroup>
       <EmbeddedResource Include="@(ReferenceCopyLocalPaths)" Condition="'%(ReferenceCopyLocalPaths.Extension)' == '.dll'">

@@ -26,7 +26,7 @@
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <metro:CommandButton Grid.Row="0" Grid.Column="8" Header="{utils:I18N Library_Import}" Command="{Binding ImportCommand}" IsEnabled="{Binding Loading, Converter={conv:BoolToBoolConverter TrueValue=False, FalseValue=True}}">
-                        <Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="o" FontRenderingEmSize="24">
+                        <Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="m" FontRenderingEmSize="24">
                             <i:Interaction.Behaviors>
                                 <b:IconBehavior/>
                             </i:Interaction.Behaviors>

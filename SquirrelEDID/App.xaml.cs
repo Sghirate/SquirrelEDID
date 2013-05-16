@@ -22,6 +22,7 @@ namespace SquirrelEDID
 {
     public enum ApplicationStates
     {
+        Back,
         Welcome,
         About,
         EDID,
@@ -49,6 +50,7 @@ namespace SquirrelEDID
         [Setting(Key = "ContrastBrush", DefaultValue = "#FFFFFFFF", Converter = typeof(StringToSolidColorBrushConverter))]
         public SolidColorBrush ContrastBrush { get; set; }
 
+        public static ApplicationStates PreviousState { get; set; }
         public static ApplicationStates CurrentState { get; set; }
         public static List<Tuple<ApplicationStates, ApplicationStates, SlideDirection>> SlideDirections { get; set; }
 
@@ -102,8 +104,9 @@ namespace SquirrelEDID
         private void BuildSlideDirections()
         {
             SlideDirections = new List<Tuple<ApplicationStates, ApplicationStates, SlideDirection>>();
-            AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.About, SlideDirection.Right);
             AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.EDID, SlideDirection.Left);
+            AddSlideDirection(ApplicationStates.Welcome, ApplicationStates.About, SlideDirection.Down);
+            AddSlideDirection(ApplicationStates.EDID, ApplicationStates.About, SlideDirection.Down);
         }
 
         private void InitSettings()

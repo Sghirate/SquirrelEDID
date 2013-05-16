@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ThirdParty", "ThirdParty", 
 		ThirdParty\Elysium.dll = ThirdParty\Elysium.dll
 		ThirdParty\Microsoft.Windows.Shell.dll = ThirdParty\Microsoft.Windows.Shell.dll
 		ThirdParty\System.Windows.Interactivity.dll = ThirdParty\System.Windows.Interactivity.dll
+		ThirdParty\VersionTask.exe = ThirdParty\VersionTask.exe
 	EndProjectSection
 EndProject
 Global

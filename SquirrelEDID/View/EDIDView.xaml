@@ -91,21 +91,21 @@
 			
 			<TextBlock Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Text="{utils:I18N EDID_FromFooter}" HorizontalAlignment="Center" FontStyle="Italic" FontSize="10" Opacity="0.75"/>
 			<metro:CommandButton Grid.Row="0" Grid.Column="0" Header="{utils:I18N EDID_FromLibrary}" Command="{Binding FromLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromLibraryHelp}">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="o" FontRenderingEmSize="24">
-					<i:Interaction.Behaviors>
-						<b:IconBehavior/>
-					</i:Interaction.Behaviors>
-				</Glyphs>
-			</metro:CommandButton>
-			<metro:CommandButton Grid.Row="0" Grid.Column="1" Header="{utils:I18N EDID_FromScreen}" Command="{Binding FromScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromScreenHelp}">
 				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="e" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>
 				</Glyphs>
 			</metro:CommandButton>
+			<metro:CommandButton Grid.Row="0" Grid.Column="1" Header="{utils:I18N EDID_FromScreen}" Command="{Binding FromScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromScreenHelp}">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="k" FontRenderingEmSize="24">
+					<i:Interaction.Behaviors>
+						<b:IconBehavior/>
+					</i:Interaction.Behaviors>
+				</Glyphs>
+			</metro:CommandButton>
 			<metro:CommandButton Grid.Row="0" Grid.Column="2" Header="{utils:I18N EDID_FromProgrammer}" Command="{Binding FromProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_FromProgrammerHelp}">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="b" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="p" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>
@@ -116,28 +116,28 @@
 
 			<TextBlock Grid.Row="1" Grid.Column="5" Grid.ColumnSpan="4" Text="{utils:I18N EDID_ToFooter}" HorizontalAlignment="Center" FontStyle="Italic" FontSize="10" Opacity="0.75"/>
 			<metro:CommandButton Grid.Row="0" Grid.Column="5" Header="{utils:I18N EDID_ToLibrary}" Command="{Binding ToLibraryCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToLibraryHelp}">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="n" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="f" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>
 				</Glyphs>
 			</metro:CommandButton>
 			<metro:CommandButton Grid.Row="0" Grid.Column="6" Header="{utils:I18N EDID_ToFiles}" Command="{Binding ToFilesCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToFilesHelp}">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="p" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="r" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>
 				</Glyphs>
 			</metro:CommandButton>
 			<metro:CommandButton Grid.Row="0" Grid.Column="7" Header="{utils:I18N EDID_ToScreen}" Command="{Binding ToScreenCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToScreenHelp}">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="e" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="l" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>
 				</Glyphs>
 			</metro:CommandButton>
 			<metro:CommandButton Grid.Row="0" Grid.Column="8" Header="{utils:I18N EDID_ToProgrammer}" Command="{Binding ToProgrammerCommand}" utils:ToolTipHelper.ToolTip="{utils:I18N EDID_ToProgrammerHelp}">
-				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="b" FontRenderingEmSize="24">
+				<Glyphs Fill="{DynamicResource ContrastBrush}" UnicodeString="p" FontRenderingEmSize="24">
 					<i:Interaction.Behaviors>
 						<b:IconBehavior/>
 					</i:Interaction.Behaviors>

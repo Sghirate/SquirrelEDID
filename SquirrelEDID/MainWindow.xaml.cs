@@ -40,6 +40,7 @@ namespace SquirrelEDID
             Messenger<ApplicationStates>.AddListener(GotoState);
             Messenger<Prompts>.AddListener(ShowPrompt);
 
+            App.CurrentState = ApplicationStates.Back;
             Loaded += (s, e) => GotoState(ApplicationStates.Welcome);
         }
 
@@ -80,6 +81,17 @@ namespace SquirrelEDID
         {
             ApplicationStates cur = App.CurrentState;
 
+            if (state == ApplicationStates.Back)
+            {
+                if (App.PreviousState == ApplicationStates.Back)
+                    return;
+
+                state = App.PreviousState;
+            }
+
+            if (state == App.CurrentState)
+                return;
+
             FrameworkElement view = (FrameworkElement)IoC.Repository[state.ToString() + "View"];
             if (view == null)
                 return;
@@ -95,6 +107,7 @@ namespace SquirrelEDID
 
             slide.Slide(view, direction);
 
+            App.PreviousState = App.CurrentState;
             App.CurrentState = state;
         }
 

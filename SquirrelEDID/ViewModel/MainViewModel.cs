@@ -131,9 +131,22 @@ namespace SquirrelEDID.ViewModel
                 return _contrastColorCommand ?? (_contrastColorCommand = new RelayCommand(HandleContrastColodExecuted));
             }
         }
+        private ICommand _aboutCommand;
+        public ICommand AboutCommand
+        {
+            get
+            {
+                return _aboutCommand ?? (_aboutCommand = new RelayCommand(HandleAboutExecuted));
+            }
+        }
         #endregion
 
         #region Methods
+        private void HandleAboutExecuted(object obj)
+        {
+            Messenger<ApplicationStates>.Invoke(ApplicationStates.About);
+        }
+
         private void HandleThemeLightExecuted(object obj)
         {
             App app = (App)App.Current;

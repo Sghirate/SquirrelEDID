@@ -23,7 +23,7 @@ namespace SquirrelEDID.ViewModel
         #region Methods
         private void HandleBackExecuted()
         {
-            Messenger<ApplicationStates>.Invoke(ApplicationStates.Welcome);
+            Messenger<ApplicationStates>.Invoke(ApplicationStates.Back);
         } 
         #endregion
     }
